@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>홈앤로지스틱스 | Home & Logistics</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --navy: #1a2740; --navy-light: #243352; --accent: #2e6fca;
+      --gray-300: #d1d8e4; --gray-500: #7a8ba3; --white: #ffffff;
+    }
+    body { font-family: 'Noto Sans KR', sans-serif; background: var(--navy); color: var(--white); min-height: 100vh; display: flex; flex-direction: column; }
+
+    .hero { flex: 1; display: flex; align-items: center; justify-content: center; }
+    .hero h1 { color: var(--white); font-size: 36px; font-weight: 700; letter-spacing: -0.5px; }
+
+    footer { background: var(--navy-light); padding: 24px 40px; text-align: center; }
+    footer .footer-info { font-size: 12px; color: var(--gray-500); line-height: 1.9; }
+    footer .footer-links { margin-top: 8px; }
+    footer .footer-links a { font-size: 11px; color: var(--gray-500); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; }
+    footer .footer-links a:hover { color: var(--white); }
+    footer .footer-copy { margin-top: 8px; font-size: 11px; color: var(--gray-500); }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 26px; }
+      footer { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>홈앤로지스틱스</h1>
+</div>
+
+<footer>
+  <div class="footer-info">
+    주식회사 홈앤로지스틱스 &nbsp;|&nbsp; 대표자: 김재진 &nbsp;|&nbsp; 사업자등록번호: 801-81-03559<br>
+    경기도 화성시 만세구 양감면 토성로 624 &nbsp;|&nbsp; Tel. 031-8043-2505
+  </div>
+  <div class="footer-links">
+    <a href="privacy.html">개인정보처리방침</a>
+  </div>
+  <div class="footer-copy">© 2026 홈앤로지스틱스. All rights reserved.</div>
+</footer>
+
+</body>
+</html>

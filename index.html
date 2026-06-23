@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HOME&amp;LOGISTICS</title>
+  <title>HOME &amp; LOGISTICS</title>
   <style>
     /* 기본 초기화 */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -39,14 +39,9 @@
       font-stretch: condensed;
       cursor: pointer;
     }
-    .logo span.highlight {
-      color: #e8420a; /* H와 L에 들어가는 빨간색 포인트 */
-    }
+    .logo span.highlight { color: #e8420a; }
     
-    nav {
-      display: flex;
-      gap: 32px;
-    }
+    nav { display: flex; gap: 32px; }
     .nav-item {
       position: relative;
       font-size: 16px;
@@ -80,21 +75,20 @@
       color: #666;
       font-weight: 500;
     }
-    .dropdown a:hover {
-      background: #f5f7fa;
-      color: #e8420a;
-    }
+    .dropdown a:hover { background: #f5f7fa; color: #e8420a; }
 
     /* ── 메인 콘텐츠 영역 ── */
     main { flex: 1; display: flex; flex-direction: column; }
 
-    /* 히어로 배너 */
+    /* 히어로 배너 (이미지가 깨지지 않고 은은하게 깔리는 구조) */
     .hero {
       width: 100%;
-      height: 380px;
-      background-image: linear-gradient(rgba(26, 46, 90, 0.45), rgba(26, 46, 90, 0.45)), url('arno-senoner-yqu6tJkSQ_k-unsplash.jpg');
+      height: 420px;
+      background-image: linear-gradient(rgba(10, 23, 49, 0.75), rgba(10, 23, 49, 0.75)), url('bg.jpg');
       background-size: cover;
-      background-position: center 35%;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: #0a1731;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -102,8 +96,9 @@
       color: #fff;
       text-align: center;
     }
-    .hero h1 { font-size: 40px; font-weight: 800; margin-bottom: 12px; letter-spacing: -1px; }
-    .hero p { font-size: 18px; opacity: 0.9; font-weight: 300; }
+    .hero h1 { font-size: 42px; font-weight: 800; margin-bottom: 14px; letter-spacing: -1px; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+    .hero h1 span.highlight { color: #e8420a; }
+    .hero p { font-size: 19px; opacity: 0.95; font-weight: 400; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
 
     /* 본문 세션 공통 */
     .content-section {
@@ -123,11 +118,10 @@
       padding-bottom: 12px;
     }
 
-    /* 회사소개 - 개요 스타일 */
+    /* 회사소개 스타일 */
     .intro-box { line-height: 2; font-size: 16px; color: #444; }
     .intro-box strong { color: #1a2e5a; font-size: 18px; }
 
-    /* 회사소개 - 오시는길 스타일 */
     .maps-placeholder {
       background: #f4f6f9;
       border: 1px solid #e0e6ed;
@@ -143,17 +137,7 @@
     .info-table th, .info-table td { padding: 14px; border-bottom: 1px solid #ddd; text-align: left; }
     .info-table th { background: #f9fafc; color: #1a2e5a; font-weight: 700; width: 20%; }
 
-    /* 사업영역 */
-    .empty-business {
-      text-align: center;
-      padding: 80px 20px;
-      color: #999;
-      border: 2px dashed #e2e8f0;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    /* 알림마당 - 게시판 테이블 스타일 */
+    /* 알림마당 */
     .board-table { width: 100%; border-collapse: collapse; font-size: 14px; }
     .board-table th { background: #f4f6f9; color: #333; font-weight: 700; height: 45px; border-top: 1px solid #1a2e5a; border-bottom: 1px solid #ddd; }
     .board-table td { height: 48px; border-bottom: 1px solid #eee; text-align: center; color: #555; }
@@ -161,26 +145,19 @@
     .board-table td.subject:hover { text-decoration: underline; }
     .no-data { text-align: center; padding: 50px 0; color: #aaa; }
 
-    /* ── 통합된 개인정보처리방침 전용 스타일 ── */
-    .privacy-container { background: #f8f9fa; border-radius: 8px; padding: 30px; border: 1px solid #edf2f6; }
-    .version-info { font-size: 13px; color: #888; margin-bottom: 20px; }
-    .intro-card { background: #fff; border-left: 4px solid #e8420a; padding: 20px; font-size: 14px; color: #444; border-radius: 0 8px 8px 0; margin-bottom: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.8; }
-    .toc-box { background: #edf1f7; border-radius: 6px; padding: 20px; margin-bottom: 30px; }
-    .toc-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; }
-    .toc-box ol { padding-left: 20px; font-size: 13.5px; display: grid; gap: 6px; }
-    .toc-box a { color: #1a2e5a; font-weight: 600; }
-    .toc-box a:hover { color: #e8420a; text-decoration: underline; }
-    .privacy-section { background: #fff; border-radius: 6px; padding: 24px; margin-bottom: 20px; border: 1px solid #e2e8f0; }
-    .privacy-section h3 { font-size: 16px; color: #1a2e5a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #edf2f7; }
-    .privacy-section p, .privacy-section li { font-size: 13.5px; color: #444; margin-bottom: 8px; line-height: 1.75; }
-    .privacy-section ol, .privacy-section ul { padding-left: 20px; }
-    .privacy-section ul li { list-style: disc; }
-    .sub-label { font-weight: 700; color: #1a2e5a; margin-top: 16px; margin-bottom: 6px; font-size: 13.5px; display: block; }
-    .table-responsive { overflow-x: auto; margin: 14px 0; border: 1px solid #dee2e6; border-radius: 4px; }
-    .privacy-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 600px; }
-    .privacy-table th, .privacy-table td { border: 1px solid #dee2e6; padding: 10px 12px; text-align: left; }
-    .privacy-table th { background: #edf1f7; color: #1a2e5a; text-align: center; }
-    .callout-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 14px 18px; font-size: 13px; margin: 10px 0; display: inline-block; }
+    /* 개인정보처리방침 스타일 */
+    .privacy-container { background: #fff; color: #333; font-size: 14px; line-height: 1.8; text-align: justify; }
+    .privacy-container h2 { font-size: 16px; font-weight: 700; color: #111; margin-top: 35px; margin-bottom: 12px; border-bottom: 1px solid #1a2e5a; padding-bottom: 6px; }
+    .privacy-container p { margin-bottom: 12px; }
+    .privacy-container ul, .privacy-container ol { padding-left: 22px; margin-bottom: 15px; }
+    .privacy-container li { margin-bottom: 6px; }
+    .sub-title-mark { font-weight: 700; color: #1a2e5a; margin-top: 15px; margin-bottom: 8px; display: block; }
+    
+    /* 정형화된 개인정보 표 스타일 */
+    .privacy-table { width: 100%; border-collapse: collapse; margin: 15px 0 25px 0; font-size: 13px; }
+    .privacy-table th, .privacy-table td { border: 1px solid #cccccc; padding: 10px; text-align: left; vertical-align: middle; line-height: 1.5; }
+    .privacy-table th { background: #f4f6f9; font-weight: 700; color: #222; text-align: center; }
+    .privacy-table td.center { text-align: center; }
 
     /* ── 푸터 영역 ── */
     footer {
@@ -189,31 +166,12 @@
       font-size: 13px;
       padding: 40px;
       border-top: 1px solid #112144;
+      margin-top: auto;
     }
-    .footer-container {
-      max-width: 1000px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .footer-nav {
-      display: flex;
-      gap: 24px;
-      border-bottom: 1px solid rgba(255,255,255,0.15);
-      padding-bottom: 15px;
-    }
-    /* 중요: 하단 링크들 간의 서체 스타일 통일화 완료 */
-    .footer-nav a { 
-      font-weight: 600; 
-      font-size: 14px; 
-      color: rgba(255,255,255,0.7); 
-      cursor: pointer; 
-      text-decoration: none; 
-    }
-    .footer-nav a:hover { 
-      color: #fff; 
-    }
+    .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-direction: column; gap: 20px; }
+    .footer-nav { display: flex; gap: 24px; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 15px; }
+    .footer-nav a { font-weight: 600; font-size: 14px; color: rgba(255,255,255,0.7); cursor: pointer; }
+    .footer-nav a:hover { color: #fff; }
     
     .footer-info { line-height: 1.9; color: rgba(255,255,255,0.65); }
     .footer-info span { margin-right: 16px; display: inline-block; }
@@ -224,24 +182,26 @@
       .logo { font-size: 22px; }
       nav { gap: 16px; }
       .nav-item { font-size: 14px; }
+      .hero { height: 320px; }
       .hero h1 { font-size: 28px; }
-      .hero p { font-size: 14px; }
-      .info-table th { width: 30%; }
+      .hero p { font-size: 15px; }
+      .privacy-table { font-size: 12px; }
+      .privacy-table th, .privacy-table td { padding: 6px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── 헤더 및 상단 메뉴 ── -->
+  <!-- 헤더 (공백 추가 완료) -->
   <header>
     <div class="logo" onclick="showSection('main-home')">
-      <span class="highlight">H</span>OME&amp;<span class="highlight">L</span>OGISTICS
+      <span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS
     </div>
     <nav>
       <div class="nav-item">
         회사소개
         <div class="dropdown">
-          <a href="#" onclick="showSection('intro-summary')">개요</a>
+          <a href="#" onclick="showSection('intro-summary')">회사개요</a>
           <a href="#" onclick="showSection('intro-map')">오시는 길</a>
         </div>
       </div>
@@ -262,14 +222,14 @@
     </nav>
   </header>
 
-  <!-- ── 메인 비주얼 배너 ── -->
   <main>
+    <!-- 가운데 메인 배너 (H와 L 포인트 레드 적용) -->
     <section class="hero">
-      <h1 id="hero-title">HOME &amp; LOGISTICS</h1>
+      <h1 id="hero-title"><span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS</h1>
       <p id="hero-desc">신뢰와 가치를 연결하는 최고의 물류 파트너</p>
     </section>
 
-    <!-- ── 섹션 1: 메인 기본화면 ── -->
+    <!-- 메인 기본화면 -->
     <section id="main-home" class="content-section active">
       <div class="section-title">Welcome</div>
       <div class="intro-box">
@@ -278,7 +238,7 @@
       </div>
     </section>
 
-    <!-- ── 섹션 2: 회사소개 - 개요 ── -->
+    <!-- 회사개요 -->
     <section id="intro-summary" class="content-section">
       <div class="section-title">회사개요</div>
       <div class="intro-box">
@@ -287,12 +247,10 @@
       </div>
     </section>
 
-    <!-- ── 섹션 3: 회사소개 - 오시는 길 ── -->
+    <!-- 오시는 길 -->
     <section id="intro-map" class="content-section">
       <div class="section-title">오시는 길</div>
-      <div class="maps-placeholder">
-        📍 [지도 서비스 준비 중입니다]
-      </div>
+      <div class="maps-placeholder">📍 [지도 서비스 준비 중입니다]</div>
       <table class="info-table">
         <tr>
           <th>주소</th>
@@ -305,15 +263,13 @@
       </table>
     </section>
 
-    <!-- ── 섹션 4: 사업영역 ── -->
+    <!-- 사업영역 -->
     <section id="business-zone" class="content-section">
       <div class="section-title">사업영역</div>
-      <div class="empty-business">
-        콘텐츠 준비 중입니다.
-      </div>
+      <div class="intro-box">콘텐츠 준비 중입니다.</div>
     </section>
 
-    <!-- ── 섹션 5: 알림마당 - 공지사항 ── -->
+    <!-- 공지사항 -->
     <section id="board-notice" class="content-section">
       <div class="section-title">공지사항</div>
       <table class="board-table">
@@ -332,7 +288,7 @@
       </table>
     </section>
 
-    <!-- ── 섹션 6: 알림마당 - 공고 ── -->
+    <!-- 공고 -->
     <section id="board-announcement" class="content-section">
       <div class="section-title">공고</div>
       <table class="board-table">
@@ -353,7 +309,7 @@
       </table>
     </section>
 
-    <!-- ── 섹션 7: 알림마당 - 채용정보 ── -->
+    <!-- 채용정보 -->
     <section id="board-recruits" class="content-section">
       <div class="section-title">채용정보</div>
       <table class="board-table">
@@ -372,74 +328,487 @@
       </table>
     </section>
 
-    <!-- ── 섹션 8: 통합 개인정보처리방침 본문 ── -->
+    <!-- 개인정보처리방침 섹션 -->
     <section id="board-privacy" class="content-section">
       <div class="section-title">개인정보처리방침</div>
       <div class="privacy-container">
-        <div class="version-info">버전 V1.0 &nbsp;|&nbsp; 시행일: 2026년 06월 01일</div>
+        <p style="font-weight: 700; font-size: 15px; margin-bottom: 15px; color:#1a2e5a;">주식회사 홈앤로지스틱스 개인정보 처리방침</p>
+        <p>주식회사 홈앤로지스틱스(이하 “회사”)는 정보주체의 자유와 권리 보호를 위해 「개인정보 보호법」 및 관계 법령이 정한 바를 준수하여, 적법하게 개인정보를 처리하고 안전하게 관리하고 있습니다. 이에 「개인정보 보호법」 제30조에 따라 정보주체에게 개인정보의 처리와 보호에 관한 절차 및 기준을 안내하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.</p>
+        <p>회사의 "개인정보처리방침"은 관련 법률 및 지침의 변경 또는 내부운영 방침의 변경에 따라 변경될 수 있습니다. 회사의 "개인정보처리방침"이 변경될 경우 변경된 회사의 "개인정보처리방침"을 영업장에 비치하거나 변경된 사항을 회사 홈페이지를 통하여 공지합니다.</p>
+        <p style="font-weight: 700;">본 개인정보처리방침은 2026년 06월 01일부터 시행됩니다.</p>
+
+        <p class="sub-title-mark">[목차]</p>
+        <ol>
+          <li>개인정보의 처리목적, 처리항목, 보유 및 이용기간</li>
+          <li>개인정보의 파기 절차 및 방법에 관한 사항</li>
+          <li>개인정보 처리업무의 위탁에 관한 사항</li>
+          <li>개인정보의 제3자 제공에 관한 사항</li>
+          <li>고정형 영상정보처리기기(CCTV) 운영·관리에 관한 사항</li>
+          <li>개인정보의 안전성 확보조치에 관한 사항</li>
+          <li>개인정보 보호책임자 및 고충을 처리하는 부서에 관한 사항</li>
+          <li>정보주체와 법정대리인의 권리·의무 및 행사방법에 관한 사항</li>
+          <li>정보주체의 권익침해에 대한 구제방법</li>
+          <li>개인정보 처리방침의 변경에 관한 사항</li>
+        </ol>
+
+        <h2>1. 개인정보의 처리목적, 처리항목, 보유 및 이용기간</h2>
+        <p>① 회사는 물류·배송 서비스 제공 및 정산 업무에 필요한 최소한의 개인정보만을 수집하며, 이용자의 기본적 인권 침해 우려가 있는 민감한 개인정보는 수집하지 않습니다.</p>
+        <p>② 회사는 수집한 개인정보를 본래의 목적 이외의 용도로 이용하지 않습니다. 이용 목적이 변경되는 경우에는 「개인정보 보호법」 제18조에 따라 별도의 동의를 받는 등 필요한 조치를 이행할 것입니다.</p>
+        <p>③ 회사는 관계 법령에 따른 보유·이용 기간 또는 정보주체로부터 수집 시 동의받은 기간 내에서 개인정보를 처리하고 보유합니다.</p>
         
-        <div class="intro-card">
-          주식회사 홈앤로지스틱스는 정보주체의 자유와 권리 보호를 위해 「개인정보 보호법」 및 관계 법령이 정한 바를 준수하여, 적법하게 개인정보를 처리하고 안전하게 관리하고 있습니다. 이에 「개인정보 보호법」 제30조에 따라 정보주체에게 개인정보의 처리와 보호에 관한 절차 및 기준을 안내하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.
-        </div>
+        <p class="sub-title-mark">◈ 정보주체의 동의를 받지 않고 처리하는 개인정보 항목</p>
+        <p>회사는 다음의 개인정보 항목을 정보주체의 동의 없이 처리하고 있습니다. 「개인정보 보호법」 제15조제1항 제2호, 제4호에 의해 동의 없이 개인정보를 수집, 이용할 수 있습니다.</p>
+        
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th style="width: 15%;">구분</th>
+              <th style="width: 20%;">수집∙이용 목적</th>
+              <th style="width: 25%;">처리 항목</th>
+              <th style="width: 20%;">법적 근거</th>
+              <th style="width: 20%;">보유 및 이용기간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center" rowspan="2">배송 서비스</td>
+              <td rowspan="2">물품 배송 및 배송 관리</td>
+              <td>[필수] 수취인 정보(이름, 휴대폰번호, 배송주소), 송장번호</td>
+              <td class="center" rowspan="2">개인정보 보호법<br>제15조제1항제4호<br>(계약체결∙이행)</td>
+              <td rowspan="2">목적 달성 후 지체 없이 파기 (단, 법령에 따른 보관의무가 있는 경우 해당 기간 보관)</td>
+            </tr>
+            <tr>
+              <td>[선택] 개인통관고유부호(해외배송)</td>
+            </tr>
+            <tr>
+              <td class="center">물류 서비스</td>
+              <td>운송 서비스 접수 및 처리</td>
+              <td>[필수] 담당자 정보(이름, 연락처), 출고지·회수지 정보</td>
+              <td class="center" style="text-align: center;">-</td>
+              <td>계약 종료 시 파기</td>
+            </tr>
+            <tr>
+              <td class="center">협력사 정산 및 관리</td>
+              <td>정산, 세금계산서 발행 및 대금 지급</td>
+              <td>[필수] 계좌정보(이름, 은행명, 계좌번호)</td>
+              <td class="center" style="text-align: center;">-</td>
+              <td>관련 법령에 따른 보관기간 종료 시 파기</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <div class="toc-box">
-          <h3>[목 차]</h3>
-          <ol>
-            <li>제1조 개인정보의 처리목적, 처리항목, 보유 및 이용기간</li>
-            <li>제2조 개인정보의 파기 절차 및 방법에 관한 사항</li>
-            <li>제3조 개인정보 처리업무의 위탁에 관한 사항</li>
-            <li>제4조 개인정보의 제3자 제공에 관한 사항</li>
-            <li>제5조 고정형 영상정보처리기기(CCTV) 운영·관리에 관한 사항</li>
-          </ol>
-        </div>
+        <p class="sub-title-mark">◈ 정보주체의 동의를 받아 처리하는 개인정보 항목</p>
+        <p>회사는 다음의 개인정보 항목을 정보주체의 동의를 받아 처리하고 있습니다.</p>
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th style="width: 15%;">구분</th>
+              <th style="width: 20%;">수집∙이용 목적</th>
+              <th style="width: 25%;">처리 항목</th>
+              <th style="width: 20%;">법적 근거</th>
+              <th style="width: 20%;">보유 및 이용기간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center" colspan="5" style="text-align: center;">해당 없음</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <div class="privacy-section">
-          <h3>제1조 개인정보의 처리목적, 처리항목, 보유 및 이용기간</h3>
-          <p>① 회사는 물류·배송 서비스 제공 및 정산 업무에 필요한 최소한의 개인정보만을 수집합니다.</p>
-          <span class="sub-label">■ 수집 항목 안내</span>
-          <div class="table-responsive">
-            <table class="privacy-table">
-              <thead>
-                <tr><th>구분</th><th>수집·이용 목적</th><th>처리 항목</th><th>보유기간</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>배송 서비스</td><td>물품 배송 및 배송 관리</td><td>수취인 정보(이름, 휴대폰번호, 주소)</td><td>목적 달성 후 지체 없이 파기</td></tr>
-                <tr><td>협력사 관리</td><td>정산 및 대금 지급</td><td>계좌정보(이름, 은행명, 계좌번호)</td><td>법령 보관기간 종료 시 파기</td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <p class="sub-title-mark">◈ 관련 법령에 따라 보관하는 항목</p>
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th>보존 항목</th>
+              <th style="width: 15%;">보존 기간</th>
+              <th>보존 근거</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>계약 또는 청약철회 등에 관한 기록, 대금 결제 및 재화 등의 공급에 관한 기록</td>
+              <td class="center">5년</td>
+              <td>전자상거래등에서의 소비자보호에 관한 법률 시행령 제6조 (거래기록)</td>
+            </tr>
+            <tr>
+              <td>소비자 불만 또는 분쟁 처리에 관한 기록</td>
+              <td class="center">3년</td>
+              <td>전자상거래등에서의 소비자보호에 관한 법률 시행령 제6조 (거래기록)</td>
+            </tr>
+            <tr>
+              <td>로그기록자료, 접속지의 추적자료</td>
+              <td class="center">3개월</td>
+              <td>통신비밀보호법 시행령 제41조(통신사실확인자료)</td>
+            </tr>
+            <tr>
+              <td>모든 거래에 관한 장부 및 증거서류</td>
+              <td class="center">5년</td>
+              <td>국세기본법 제85조의3(장부 등의 비치와 보존)</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <div class="privacy-section">
-          <h3>제2조 개인정보의 파기 절차 및 방법에 관한 사항</h3>
-          <p>회사는 개인정보 보유기간의 경과 또는 처리 목적 달성 등으로 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다. 전자적 파일 형태는 기록을 재생할 수 없도록 파기하며, 종이 문서는 분쇄하거나 소각합니다.</p>
-        </div>
+        <h2>2. 개인정보의 파기 절차 및 방법에 관한 사항</h2>
+        <p>① 회사는 개인정보 보유기간의 경과 또는 처리 목적 달성 등으로 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.</p>
+        <p>② 정보주체로부터 동의받은 개인정보 보유기간이 경과하거나 처리목적이 달성되었음에도 다른 법령에 따라 개인정보를 계속 보존하여야 하는 경우에는, 해당 개인정보를 별도의 데이터베이스(DB)로 옮기거나 보관장소를 달리하여 보존합니다.</p>
+        <p style="font-size:13px; color:#666;">※ 다른 법령에 따라 보존하는 개인정보의 항목과 보존 근거는 「1. 개인정보의 처리목적, 처리항목, 보유 및 이용기간」에서 확인 가능합니다.</p>
+        <p>③ 개인정보 파기의 절차 및 방법은 다음과 같습니다.</p>
+        <ul>
+          <li><strong>1) 파기 절차:</strong> 회사는 파기 사유가 발생한 개인정보를 선정하고, 회사의 개인정보 보호책임자의 승인을 받아 개인정보를 파기합니다.</li>
+          <li><strong>2) 파기 방법:</strong> 회사는 전자적 파일 형태로 기록∙저장된 개인정보는 기록을 재생할 수 없도록 파기하며, 종이 문서에 기록∙저장된 개인정보는 분쇄기로 분쇄하거나 소각하여 파기합니다.</li>
+        </ul>
 
-        <div class="privacy-section">
-          <h3>제3조 개인정보 처리업무의 위탁에 관한 사항</h3>
-          <p>회사는 원활한 배송 서비스를 위하여 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
-          <p>• <strong>수탁업체 현황:</strong> 롯데글로벌로지스, CJ대한통운, 한진택배, 153로지스틱스</p>
-        </div>
+        <h2>3. 개인정보 처리업무의 위탁에 관한 사항</h2>
+        <p>① 회사는 원활한 서비스 제공을 위하여 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
+        <p>② 회사는 위탁계약 체결 시 「개인정보 보호법」 제26조에 따라 위탁업무 수행목적 외 개인정보 처리금지, 기술적·관리적 보호조치, 재위탁 제한, 수탁자에 대한 관리·감독, 손해배상 등 책임에 관한 사항을 계약서 등 문서에 명시하고, 수탁자가 개인정보를 안전하게 처리하는지를 감독하고 있습니다.</p>
+        <p>③ 「개인정보 보호법」 제26조 제6항에 따라 수탁자가 회사의 개인정보 처리업무를 재위탁하는 경우 회사의 동의를 받아야 하며, 본 개인정보 처리방침을 통하여 재수탁자와 재수탁하는 업무의 내용을 공개할 것입니다.</p>
+        <p>④ 위탁업무의 내용이나 수탁자가 변경될 경우에는 지체없이 본 개인정보 처리방침을 통하여 공개하도록 하겠습니다.</p>
+        
+        <p class="sub-title-mark">◈ 수탁자 현황</p>
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th style="width: 30%;">수탁자</th>
+              <th>위탁 업무</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center">롯데글로벌로지스</td>
+              <td>상품배송(환불, 교환 등) 및 배송관련 부가업무의 처리</td>
+            </tr>
+            <tr>
+              <td class="center">CJ대한통운</td>
+              <td>상품배송(환불, 교환 등) 및 배송관련 부가업무의 처리</td>
+            </tr>
+            <tr>
+              <td class="center">한진택배</td>
+              <td>상품배송(환불, 교환 등) 및 배송관련 부가업무의 처리</td>
+            </tr>
+            <tr>
+              <td class="center">153로지스틱스</td>
+              <td>물류센터 현장 운영 및 물류 업무 대행</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <div class="privacy-section">
-          <h3>제4조 개인정보의 제3자 제공에 관한 사항</h3>
-          <p>회사는 정보주체의 개인정보를 명시한 범위 내에서만 처리하며, 정보주체의 동의 또는 법률의 특별한 규정이 있는 경우를 제외하고는 제3자에게 제공하지 않습니다.</p>
-        </div>
+        <p class="sub-title-mark">◈ 재위탁 현황</p>
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">수탁자</th>
+              <th style="width: 25%;">재위탁자</th>
+              <th>재위탁 업무</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center" rowspan="4">롯데글로벌로지스</td>
+              <td class="center">택배 대리점</td>
+              <td>물품 배송</td>
+            </tr>
+            <tr>
+              <td class="center">롯데이노베이트</td>
+              <td>전산운영 및 CS응대</td>
+            </tr>
+            <tr>
+              <td class="center">세종네트웍스</td>
+              <td>배송 안내(SMS), 안심번호 서비스 제공</td>
+            </tr>
+            <tr>
+              <td class="center">커넥트웨이브</td>
+              <td>배송 안내(알림톡)</td>
+            </tr>
+            <tr>
+              <td class="center" rowspan="8">CJ대한통운</td>
+              <td class="center">택배 집배점</td>
+              <td>택배물품 배송 접수 및 물품 배송</td>
+            </tr>
+            <tr>
+              <td class="center">CJ올리브네트웍스㈜</td>
+              <td>IT 서비스 운영 및 인프라 관리, 택배물품 배송 알림 서비스</td>
+            </tr>
+            <tr>
+              <td class="center">㈜비지에프네트웍스</td>
+              <td>택배물품 배송 알림 서비스</td>
+            </tr>
+            <tr>
+              <td class="center">㈜CJ텔레닉스</td>
+              <td>택배고객 전화상담 응대 및 안내</td>
+            </tr>
+            <tr>
+              <td class="center">한국정보통신 주식회사</td>
+              <td>택배물품 배송 서비스의 결제 및 환불</td>
+            </tr>
+            <tr>
+              <td class="center">삼정데이타서비스㈜</td>
+              <td>이메일 인증 정보 발송</td>
+            </tr>
+            <tr>
+              <td class="center">Hubspot Inc. / Zoho Corporation</td>
+              <td>1대1 고객 문의 관리를 위한 CRM운영</td>
+            </tr>
+            <tr>
+              <td class="center">AWS코리아(유)</td>
+              <td>서비스 제공을 위한 데이터 보관 및 인프라 운영</td>
+            </tr>
+            <tr>
+              <td class="center" rowspan="7">한진택배</td>
+              <td class="center">집배점/조업사</td>
+              <td>택배 물품의 분류 및 집배송 서비스</td>
+            </tr>
+            <tr>
+              <td class="center">메가존클라우드</td>
+              <td>클라우드 인프라서비스 관리 / 운영대행</td>
+            </tr>
+            <tr>
+              <td class="center">유니에스</td>
+              <td>CS업무 수행</td>
+            </tr>
+            <tr>
+              <td class="center">한진정보통신㈜</td>
+              <td>전산시스템 구축, 운영, 유지보수</td>
+            </tr>
+            <tr>
+              <td class="center">서머스플랫폼</td>
+              <td>알림톡 서비스</td>
+            </tr>
+            <tr>
+              <td class="center">인포존/LGU+</td>
+              <td>SMS발송 서비스</td>
+            </tr>
+            <tr>
+              <td class="center">Amazon Web Services korea LLC</td>
+              <td>클라우드 인프라 서비스 이용</td>
+            </tr>
+          </tbody>
+        </table>
 
-        <div class="privacy-section">
-          <h3>제5조 고정형 영상정보처리기기(CCTV) 운영·관리에 관한 사항</h3>
-          <p>회사는 시설안전, 화재 및 범죄예방을 목적으로 총 22대의 CCTV를 설치·운영하고 있습니다. 촬영시간은 24시간이며, 보관기간은 촬영일로부터 30일입니다.</p>
-          <div class="callout-box">
-            <strong>📥 개인정보 고충처리 담당부서</strong><br />
-            • 담당자: 박기덕 과장 (031-8043-2585 / kd.park@homelogistics.co.kr)
-          </div>
-        </div>
+        <h2>4. 개인정보의 제3자 제공에 관한 사항</h2>
+        <p>① 회사는 정보주체의 개인정보를 개인정보의 처리 목적에서 명시한 범위 내에서만 처리하며, 정보주체의 동의, 법률의 특별한 규정 등 「개인정보 보호법」 제17조 및 제18조에 해당하는 경우에만 개인정보를 제3자에게 제공하고, 그 이외에는 정보주체의 개인정보를 제3자에게 제공하지 않습니다.</p>
+        <p>② 회사는 원활한 서비스 제공을 위해 다음의 경우 「개인정보 보호법」 제17조 제1항 제1호에 따라 정보주체의 동의를 얻어 필요 최소한의 범위로만 제공합니다.</p>
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th>사업명</th>
+              <th>제공받는 자</th>
+              <th>제공 목적</th>
+              <th>제공 항목</th>
+              <th>제공받는 자의 개인정보 보유 및 이용 기간</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center" colspan="5" style="text-align: center;">해당 없음</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>③ 회사는 정보주체의 동의를 받아 개인정보를 제3자에게 제공할 때에는 다음의 사항을 명확히 고지한 후 정보주체의 동의를 얻습니다.</p>
+        <ul>
+          <li>1. 개인정보를 제공받는 자(제3자)</li>
+          <li>2. 개인정보를 제공받는 자(제3자)의 개인정보 이용 목적</li>
+          <li>3. 제공하는 개인정보 항목</li>
+          <li>4. 개인정보를 제공받는 자의 개인정보 보유∙이용 기간</li>
+          <li>5. 동의를 거부할 권리가 있다는 사실 및 동의 거부에 따른 불이익이 있는 경우에는 그 불이익의 내용 등</li>
+        </ul>
+        <p>④ 회사에서는 위 ②항에 해당하는 사업 이외에 다른 사업에서 개인정보의 제3자 제공이 필요한 경우 필수고지사항(③항 1호~5호)을 고지한 후 정보주체의 동의를 받고 개인정보를 제3자에게 제공합니다.</p>
+
+        <h2>5. 고정형 영상정보처리기기(CCTV) 운영·관리에 관한 사항</h2>
+        <p><strong>① 고정형 영상정보처리기기의 설치 근거 및 설치 목적:</strong> 회사는 개인정보 보호법 제25조 제1항에 따라 다음과 같은 목적으로 고정형 영상정보처리기기를 설치∙운영합니다.</p>
+        <ul>
+          <li>1) 사무실/사업장 시설 안전 및 보안 관리</li>
+          <li>2) 범죄 예방 및 사고 발생 시 사실 확인</li>
+          <li>3) 분쟁 대응</li>
+        </ul>
+        <p><strong>② 고정형 영상정보처리기기의 설치 대수, 설치 위치 및 촬영 범위:</strong></p>
+        <ul>
+          <li>1) 설치 대수 : 22대</li>
+          <li>2) 설치 위치 및 촬영 범위 : 출입구, 주차장, 물류 작업 공간, 공용 통로 등</li>
+        </ul>
+        <p><strong>③ 관리책임자, 담당 부서 및 영상정보에 대한 접근 권한이 있는 자:</strong> 회사는 정보주체의 개인영상정보를 보호하고 개인영상정보와 관련한 불만을 처리하기 위하여 아래와 같이 개인영상정보 관리책임자 및 처리기기운영자를 두고 있습니다.</p>
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th style="width: 20%;">구분</th>
+              <th>개인영상정보 관리책임자</th>
+              <th>개인영상정보 처리기기운영자</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center">성명</td>
+              <td class="center">권상협</td>
+              <td class="center">박기덕</td>
+            </tr>
+            <tr>
+              <td class="center">부서</td>
+              <td class="center">-</td>
+              <td class="center">-</td>
+            </tr>
+            <tr>
+              <td class="center">직위</td>
+              <td class="center">책임</td>
+              <td class="center">과장</td>
+            </tr>
+            <tr>
+              <td class="center">전자우편</td>
+              <td class="center">sh.kwon@homelogistics.co.kr</td>
+              <td class="center">kd.park@homelogistics.co.kr</td>
+            </tr>
+            <tr>
+              <td class="center">전화번호</td>
+              <td class="center">031-8043-2231</td>
+              <td class="center">031-8043-2585</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><strong>④ 개인영상정보의 촬영시간, 보관기간, 보관장소 및 처리방법:</strong></p>
+        <ul>
+          <li>1) 촬영시간 : 24시간</li>
+          <li>2) 보관기간 : 촬영일로부터 30일</li>
+          <li>3) 보관장소 : 서버실(물류센터 내 롯데글로벌로지스 서버실)</li>
+          <li>4) 처리방법 : 개인영상정보의 목적 외 이용, 제3자 제공, 파기, 열람 등 요구에 관한 사항을 기록∙관리하고, 보관기간 만료 시 복원이 불가능한 기술적 방법으로 영구 삭제(출력물의 경우 파쇄 또는 소각)합니다.</li>
+        </ul>
+        <p><strong>⑤ 영상정보처리기기운영자의 영상정보 확인 방법 및 장소:</strong></p>
+        <ul>
+          <li>1) 확인 방법 : 회사는 고정형 영상정보처리기기에 의하여 전송되는 영상정보가 아래와 같이 접근권한이 부여된 자 외에는 열람·재생할 수 없도록 하고 있습니다. 단, 열람·재생의 필요가 있을 경우 개인영상정보 관리책임자의 승인을 받은 후 열람·재생할 수 있습니다.<br>
+          - 개인영상정보 관리책임자 / 개인영상정보 처리기기운영자 / 위탁 유지보수 업체 / 기타 영상정보관리책임자의 승인을 득한 자</li>
+          <li>2) 확인 장소 : 서버실(홈앤로지스틱스 사무실)</li>
+        </ul>
+        <p><strong>⑥ 정보주체의 영상정보 열람 등 요구에 대한 조치:</strong></p>
+        <ul>
+          <li>1) 정보주체는 회사가 처리하는 개인영상정보에 관하여 열람 또는 존재확인∙삭제(이하 “열람 등”이라 한다)를 원하는 경우 언제든지 고정형 영상정보처리기기운영자에게 요구하실 수 있습니다. 단, 정보주체 본인이 촬영된 개인영상정보에 한정됩니다. 회사는 개인영상정보에 관하여 열람 등을 요구하는 경우 지체없이 필요한 조치를 하겠습니다.</li>
+          <li>2) 개인영상정보 열람 등을 요구하는 경우에는 아래 절차를 준수하여 주시기 바랍니다.<br>
+          - 개인영상정보 관리책임자 사전 연락 후 회사 방문 -> 제공되는 “개인영상정보 존재확인/열람 청구서” 작성 후 제출 -> 개인영상정보 확인</li>
+        </ul>
+        <p><strong>⑦ 개인영상정보 보호를 위한 기술적·관리적 및 물리적 조치:</strong> 회사는 개인영상정보가 분실·도난·유출·변조 또는 훼손되지 아니하도록 개인영상정보의 안전성 확보를 위하여 다음 각 호의 조치를 수행하고 있습니다.</p>
+        <ul>
+          <li>1) 개인영상정보에 대한 접근 통제 및 접근 권한의 제한 조치 (부서이동, 퇴직 등 인사 사유가 발생하여 접근권한이 변경된 경우에는 지체 없이 권한을 변경 또는 말소함)</li>
+          <li>2) 개인영상정보를 안전하게 저장·전송할 수 있는 기술의 적용 (네트워크 카메라의 경우 안전한 전송을 위한 암호화 조치, 영상정보파일 저장 시 비밀번호 설정 등)</li>
+          <li>3) 처리기록의 보관 및 위조·변조 방지를 위한 조치 (개인영상정보의 생성일시 및 열람할 경우 열람목적·열람자·열람일시 등 기록·관리 조치 등)</li>
+          <li>4) 개인영상정보의 관리현황 점검 및 수탁사 교육 실시</li>
+          <li>5) 개인영상정보의 안전한 물리적 보관을 위한 보관시설 마련 및 잠금장치 설치</li>
+        </ul>
+
+        <h2>6. 개인정보의 안전성 확보조치에 관한 사항</h2>
+        <p>회사는 이용자의 개인정보를 처리함에 있어 개인정보가 분실, 도난, 유출, 변조 또는 훼손되지 않도록 기술적, 관리적, 물리적 보호조치를 강구하고 있습니다.</p>
+        <ul>
+          <li><strong>1) 관리적 조치 :</strong> 내부관리계획 수립∙시행, 정기적 직원 교육</li>
+          <li><strong>2) 기술적 조치 :</strong> 개인정보처리시스템 등의 접근권한 관리, 접근통제시스템 설치 및 기타 관련 보호조치, 인터넷망 차단 조치, 개인정보의 암호화, 접속기록의 보관 및 점검, 보안프로그램 설치 및 갱신, 개인정보처리시스템의 취약점 점검 및 보완</li>
+          <li><strong>3) 물리적 조치 :</strong> 전산실, 자료보관실 등의 접근통제, 서류ㆍ보조저장매체 등을 잠금장치가 있는 안전한 장소에 보관, 재해·재난에 대한 안전조치, 보조저장매체의 반출ㆍ입 통제</li>
+        </ul>
+        <p class="sub-title-mark">◈ 기술적 보호조치</p>
+        <p>회사는 고객님의 개인정보를 처리함에 있어 개인정보가 분실, 도난, 유출, 위조•변조 또는 훼손되지 않도록 안전성 확보를 위하여 다음과 같은 기술적 대책을 강구하고 있습니다.</p>
+        <ul>
+          <li>1) 고객님의 개인정보는 비밀번호에 의해 보호되며 파일 및 전송데이터를 암호화하거나 파일잠금 기능을 사용하여 중요한 데이터는 별도의 보안기능을 통해 보호되고 있습니다.</li>
+          <li>2) 회사는 백신프로그램을 이용하여 컴퓨터바이러스에 의한 피해를 방지하기 위한 조치를 취하고 있습니다. 백신프로그램은 주기적으로 업데이트되며 갑작스런 바이러스가 출현할 경우 백신이 나오는 즉시 이를 제공함으로써 개인정보가 침해되는 것을 방지하고 있습니다.</li>
+          <li>3) 회사는 암호알고리즘을 이용하여 네트워크 상의 개인정보를 안전하게 전송할 수 있는 보안장치를 채택하고 있습니다.</li>
+          <li>4) 해킹 등 외부침입에 대비하여 각 서버마다 침입차단시스템 및 취약점 분석시스템 등을 이용하여 보안에 만전을 기하고 있습니다.</li>
+        </ul>
+        <p class="sub-title-mark">◈ 관리적 대책</p>
+        <ul>
+          <li>1) 회사는 내부관리계획 수립·시행 및 고객님의 개인정보에 대한 접근권한을 최소한의 인원으로 제한하고 있으며, 개인정보를 처리하는 직원을 대상으로 새로운 보안기술 습득 및 개인정보보호의무 등에 관해 정기적인 사내 교육 및 외부 위탁교육을 실시하고 있습니다.</li>
+          <li>2) 개인정보를 처리하는 최소한의 인원에 해당하는 자는 다음과 같습니다.<br>
+          - 이용자를 직접 상대로 하여 마케팅 업무를 수행하는 자<br>
+          - 개인정보보호책임자 및 담당자 등 개인정보처리업무를 수행하는 자<br>
+          - 기타 업무상 개인정보의 처리가 불가피한 자</li>
+          <li>3) 입사 시 전 직원의 보안서약서를 통하여 사람에 의한 정보유출을 사전에 방지하고 개인정보 처리방침에 대한 이행사항 및 직원의 준수여부를 감시하기 위한 내부절차를 마련하고 있습니다.</li>
+          <li>4) 개인정보 관련 처리자의 업무 인수인계는 보안이 유지된 상태에서 철저하게 이루어지고 있으며 입사 및 퇴사 후 개인정보 사고에 대한 책임을 명확화하고 있습니다.</li>
+          <li>5) 개인정보와 일반 데이터를 혼합하여 보관하지 않고 별도의 서버를 통해 분리하여 보관 하고 있습니다.</li>
+          <li>6) 전산실 및 자료 보관실 등을 특별 보호구역으로 설정하여 출입을 통제하고 있습니다.</li>
+          <li>7) 그 외 내부 관리자의 실수나 기술관리 상의 사고로 인해 개인정보의 상실, 유출, 위조•변조, 훼손이 유발될 경우 회사는 즉각 고객님께 사실을 알리고 적절한 대책과 보상을 강구할 것 입니다.</li>
+        </ul>
+
+        <h2>7. 개인정보 보호책임자 및 고충을 처리하는 부서에 관한 사항</h2>
+        <p>회사는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보 처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와 같이 개인정보 보호책임자를 지정하고 있습니다.</p>
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th style="width: 20%;">구분</th>
+              <th>개인정보보호책임자</th>
+              <th>개인정보보호 담당자</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center">성명</td>
+              <td class="center">김재진</td>
+              <td class="center">박기덕</td>
+            </tr>
+            <tr>
+              <td class="center">부서</td>
+              <td class="center">-</td>
+              <td class="center">-</td>
+            </tr>
+            <tr>
+              <td class="center">직위</td>
+              <td class="center">대표이사</td>
+              <td class="center">과장</td>
+            </tr>
+            <tr>
+              <td class="center">이메일</td>
+              <td class="center">homelogis@homelogistics.co.kr</td>
+              <td class="center">kd.park@homelogistics.co.kr</td>
+            </tr>
+            <tr>
+              <td class="center">연락처</td>
+              <td class="center">031-8043-2732</td>
+              <td class="center">031-8043-2585</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>8. 정보주체와 법정대리인의 권리·의무 및 행사방법에 관한 사항</h2>
+        <p>① 정보주체는 회사에 대해 언제든지 개인정보 열람∙전송∙정정·삭제∙처리정지 및 동의 철회 등을 요구(이하 “권리 행사”)할 수 있습니다.</p>
+        <p>② 권리 행사는 회사에 대해 「개인정보 보호법」 시행령 제41조 제1항에 따라 서면, 전화, 전자우편, 팩스(FAX), 인터넷 등을 통하여 하실 수 있으며, 회사는 이에 대해 지체없이 조치하겠습니다.</p>
+        <p>③ 권리 행사는 정보주체의 법정대리인이나 위임을 받은 자 등 대리인을 통하여 하실 수도 있습니다. 이 경우 “개인정보 처리 방법에 관한 고시” [별지 11] 서식에 따른 위임장을 제출하셔야 합니다.</p>
+        <p>④ 정보주체가 개인정보 열람 및 처리 정리를 요구할 권리는 「개인정보 보호법」 제35조 제4항 및 제37조 제2항에 의하여 제한될 수 있습니다.</p>
+        <p>⑤ 다른 법령에서 그 개인정보가 수집 대상으로 명시되어 있는 경우에는 해당 개인정보의 삭제를 요구할 수 없습니다.</p>
+        <p>⑥ 회사는 권리 행사를 한 자가 본인이거나 대리인인지를 확인합니다.</p>
+        <p>⑦ 정보주체는 권리 행사를 아래의 부서에서 할 수 있습니다. 회사는 정보주체로부터 권리 행사를 청구받은 날로부터 10일 이내(전송 요구의 경우 지체 없이) 회신하겠습니다.</p>
+        <table class="privacy-table">
+          <thead>
+            <tr>
+              <th style="width: 20%;">구분</th>
+              <th>내용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="center">부서명</td>
+              <td>-</td>
+            </tr>
+            <tr>
+              <td class="center">연락처</td>
+              <td>031-8043-2585</td>
+            </tr>
+            <tr>
+              <td class="center">이메일</td>
+              <td>kd.park@homelogistics.com</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2>9. 정보주체의 권익침해에 대한 구제방법</h2>
+        <p>정보주체는 개인정보침해로 인한 구제를 받기 위하여 개인정보분쟁조정위원회, 한국인터넷진흥원, 개인정보침해 신고센터 등에 분쟁해결이나 상담 등을 신청할 수 있습니다. 그밖에 기타 개인정보침해의 신고, 상담에 대해서는 아래의 기관에 문의하시기 바랍니다.</p>
+        <ul>
+          <li>① 개인정보 분쟁조정위원회 : (국번없이) 1833-6972 (https://www.kopico.go.kr)</li>
+          <li>② 개인정보침해 신고센터 : (국번없이) 118 (privacy.kisa.or.kr)</li>
+          <li>③ 대검찰청 : (국번없이) 1301 (www.spo.go.kr)</li>
+          <li>④ 경찰청 : (국번없이) 182 (ecrm.police.go.kr)</li>
+        </ul>
+
+        <h2>10. 개인정보 처리방침의 변경에 관한 사항</h2>
+        <p>본 방침은 법령 또는 회사 정책 변경에 따라 수정될 수 있으며, 변경 시 회사 사업장 게시를 통해 공지합니다.</p>
+        <p>- 개인정보처리방침 버전 : V1.0</p>
+        <p>- 개인정보처리방침 시행 일자 : 2026.06.01</p>
 
       </div>
     </section>
   </main>
 
-  <!-- ── 푸터 ── -->
+  <!-- 푸터 -->
   <footer>
     <div class="footer-container">
       <div class="footer-nav">
@@ -460,7 +829,6 @@
     </div>
   </footer>
 
-  <!-- ── 탭 메뉴 전환 스크립트 ── -->
   <script>
     function showSection(sectionId) {
       const sections = document.querySelectorAll('.content-section');
@@ -475,21 +843,21 @@
       const heroDesc = document.getElementById('hero-desc');
       
       if (sectionId.startsWith('intro-')) {
-        heroTitle.textContent = "COMPANY INFO";
+        heroTitle.innerHTML = '<span class="highlight">C</span>OMPANY INFO';
         heroDesc.textContent = "홈앤로지스틱스를 소개해 드립니다.";
       } else if (sectionId.startsWith('business-')) {
-        heroTitle.textContent = "BUSINESS AREA";
+        heroTitle.innerHTML = '<span class="highlight">B</span>USINESS AREA';
         heroDesc.textContent = "비즈니스 핵심 역량을 확인하실 수 있습니다.";
       } else if (sectionId.startsWith('board-')) {
-        heroTitle.textContent = "MEDIA CENTER";
+        heroTitle.innerHTML = '<span class="highlight">M</span>EDIA CENTER';
         heroDesc.textContent = "홈앤로지스틱스의 최신 정보를 전합니다.";
       } else {
-        heroTitle.textContent = "HOME & LOGISTICS";
+        heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS';
         heroDesc.textContent = "신뢰와 가치를 연결하는 최고의 물류 파트너";
       }
 
       if(sectionId !== 'main-home') {
-        window.scrollTo({ top: 320, behavior: 'smooth' });
+        window.scrollTo({ top: 380, behavior: 'smooth' });
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }

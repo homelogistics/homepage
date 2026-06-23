@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HOME&amp;LOGISTICS</title>
+  <style>
+    /* 기본 초기화 */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+      background: #fff;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── 헤더 & 네비게이션 ── */
+    header {
+      width: 100%;
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .logo {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: #1a2e5a;
+      font-stretch: condensed;
+      cursor: pointer;
+    }
+    .logo span.highlight {
+      color: #e8420a; /* H와 L에 들어가는 빨간색 포인트 */
+    }
+    
+    nav {
+      display: flex;
+      gap: 32px;
+    }
+    .nav-item {
+      position: relative;
+      font-size: 16px;
+      font-weight: 700;
+      color: #444;
+      cursor: pointer;
+      padding: 10px 0;
+    }
+    .nav-item:hover { color: #1a2e5a; }
+    
+    /* 서브메뉴 */
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      min-width: 130px;
+      text-align: center;
+      padding: 8px 0;
+    }
+    .nav-item:hover .dropdown { display: block; }
+    .dropdown a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 14px;
+      color: #666;
+      font-weight: 500;
+    }
+    .dropdown a:hover {
+      background: #f5f7fa;
+      color: #e8420a;
+    }
+
+    /* ── 메인 콘텐츠 영역 ── */
+    main { flex: 1; display: flex; flex-direction: column; }
+
+    /* 히어로 배너 */
+    .hero {
+      width: 100%;
+      height: 380px;
+      background-image: linear-gradient(rgba(26, 46, 90, 0.45), rgba(26, 46, 90, 0.45)), url('arno-senoner-yqu6tJkSQ_k-unsplash.jpg');
+      background-size: cover;
+      background-position: center 35%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      text-align: center;
+    }
+    .hero h1 { font-size: 40px; font-weight: 800; margin-bottom: 12px; letter-spacing: -1px; }
+    .hero p { font-size: 18px; opacity: 0.9; font-weight: 300; }
+
+    /* 본문 세션 공통 */
+    .content-section {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 60px 20px;
+      display: none;
+    }
+    .content-section.active { display: block; }
+    .section-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a2e5a;
+      margin-bottom: 30px;
+      border-bottom: 2px solid #1a2e5a;
+      padding-bottom: 12px;
+    }
+
+    /* 회사소개 - 개요 스타일 */
+    .intro-box { line-height: 2; font-size: 16px; color: #444; }
+    .intro-box strong { color: #1a2e5a; font-size: 18px; }
+
+    /* 회사소개 - 오시는길 스타일 */
+    .maps-placeholder {
+      background: #f4f6f9;
+      border: 1px solid #e0e6ed;
+      height: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #777;
+      margin-bottom: 20px;
+      font-size: 15px;
+    }
+    .info-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    .info-table th, .info-table td { padding: 14px; border-bottom: 1px solid #ddd; text-align: left; }
+    .info-table th { background: #f9fafc; color: #1a2e5a; font-weight: 700; width: 20%; }
+
+    /* 사업영역 */
+    .empty-business {
+      text-align: center;
+      padding: 80px 20px;
+      color: #999;
+      border: 2px dashed #e2e8f0;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    /* 알림마당 - 게시판 테이블 스타일 */
+    .board-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .board-table th { background: #f4f6f9; color: #333; font-weight: 700; height: 45px; border-top: 1px solid #1a2e5a; border-bottom: 1px solid #ddd; }
+    .board-table td { height: 48px; border-bottom: 1px solid #eee; text-align: center; color: #555; }
+    .board-table td.subject { text-align: left; padding-left: 15px; color: #1a2e5a; font-weight: 600; cursor: pointer; }
+    .board-table td.subject:hover { text-decoration: underline; }
+    .no-data { text-align: center; padding: 50px 0; color: #aaa; }
+
+    /* ── 통합된 개인정보처리방침 전용 스타일 ── */
+    .privacy-container { background: #f8f9fa; border-radius: 8px; padding: 30px; border: 1px solid #edf2f6; }
+    .version-info { font-size: 13px; color: #888; margin-bottom: 20px; }
+    .intro-card { background: #fff; border-left: 4px solid #e8420a; padding: 20px; font-size: 14px; color: #444; border-radius: 0 8px 8px 0; margin-bottom: 30px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); line-height: 1.8; }
+    .toc-box { background: #edf1f7; border-radius: 6px; padding: 20px; margin-bottom: 30px; }
+    .toc-box h3 { font-size: 14px; color: #555; margin-bottom: 10px; }
+    .toc-box ol { padding-left: 20px; font-size: 13.5px; display: grid; gap: 6px; }
+    .toc-box a { color: #1a2e5a; font-weight: 600; }
+    .toc-box a:hover { color: #e8420a; text-decoration: underline; }
+    .privacy-section { background: #fff; border-radius: 6px; padding: 24px; margin-bottom: 20px; border: 1px solid #e2e8f0; }
+    .privacy-section h3 { font-size: 16px; color: #1a2e5a; margin-bottom: 14px; padding-bottom: 8px; border-bottom: 1px solid #edf2f7; }
+    .privacy-section p, .privacy-section li { font-size: 13.5px; color: #444; margin-bottom: 8px; line-height: 1.75; }
+    .privacy-section ol, .privacy-section ul { padding-left: 20px; }
+    .privacy-section ul li { list-style: disc; }
+    .sub-label { font-weight: 700; color: #1a2e5a; margin-top: 16px; margin-bottom: 6px; font-size: 13.5px; display: block; }
+    .table-responsive { overflow-x: auto; margin: 14px 0; border: 1px solid #dee2e6; border-radius: 4px; }
+    .privacy-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 600px; }
+    .privacy-table th, .privacy-table td { border: 1px solid #dee2e6; padding: 10px 12px; text-align: left; }
+    .privacy-table th { background: #edf1f7; color: #1a2e5a; text-align: center; }
+    .callout-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 4px; padding: 14px 18px; font-size: 13px; margin: 10px 0; display: inline-block; }
+
+    /* ── 푸터 영역 ── */
+    footer {
+      background: #1a2e5a;
+      color: rgba(255,255,255,0.8);
+      font-size: 13px;
+      padding: 40px;
+      border-top: 1px solid #112144;
+    }
+    .footer-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      padding-bottom: 15px;
+    }
+    /* 중요: 하단 링크들 간의 서체 스타일 통일화 완료 */
+    .footer-nav a { 
+      font-weight: 600; 
+      font-size: 14px; 
+      color: rgba(255,255,255,0.7); 
+      cursor: pointer; 
+      text-decoration: none; 
+    }
+    .footer-nav a:hover { 
+      color: #fff; 
+    }
+    
+    .footer-info { line-height: 1.9; color: rgba(255,255,255,0.65); }
+    .footer-info span { margin-right: 16px; display: inline-block; }
+    .copy { color: rgba(255,255,255,0.4); font-size: 12px; margin-top: 5px; }
+
+    @media (max-width: 768px) {
+      header { padding: 0 20px; height: 70px; }
+      .logo { font-size: 22px; }
+      nav { gap: 16px; }
+      .nav-item { font-size: 14px; }
+      .hero h1 { font-size: 28px; }
+      .hero p { font-size: 14px; }
+      .info-table th { width: 30%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── 헤더 및 상단 메뉴 ── -->
+  <header>
+    <div class="logo" onclick="showSection('main-home')">
+      <span class="highlight">H</span>OME&amp;<span class="highlight">L</span>OGISTICS
+    </div>
+    <nav>
+      <div class="nav-item">
+        회사소개
+        <div class="dropdown">
+          <a href="#" onclick="showSection('intro-summary')">개요</a>
+          <a href="#" onclick="showSection('intro-map')">오시는 길</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        사업영역
+        <div class="dropdown">
+          <a href="#" onclick="showSection('business-zone')">사업 영역</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        알림마당
+        <div class="dropdown">
+          <a href="#" onclick="showSection('board-notice')">공지사항</a>
+          <a href="#" onclick="showSection('board-announcement')">공고</a>
+          <a href="#" onclick="showSection('board-recruits')">채용정보</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── 메인 비주얼 배너 ── -->
+  <main>
+    <section class="hero">
+      <h1 id="hero-title">HOME &amp; LOGISTICS</h1>
+      <p id="hero-desc">신뢰와 가치를 연결하는 최고의 물류 파트너</p>
+    </section>
+
+    <!-- ── 섹션 1: 메인 기본화면 ── -->
+    <section id="main-home" class="content-section active">
+      <div class="section-title">Welcome</div>
+      <div class="intro-box">
+        <strong>주식회사 홈앤로지스틱스 홈페이지에 오신 것을 환영합니다.</strong><br /><br />
+        상단 메뉴를 클릭하시면 회사 개요, 오시는 길 및 최신 공고·채용 정보를 확인하실 수 있습니다.
+      </div>
+    </section>
+
+    <!-- ── 섹션 2: 회사소개 - 개요 ── -->
+    <section id="intro-summary" class="content-section">
+      <div class="section-title">회사개요</div>
+      <div class="intro-box">
+        <strong>고객의 신뢰를 바탕으로 성장하는 주식회사 홈앤로지스틱스입니다.</strong><br /><br />
+        주식회사 홈앤로지스틱스는 신속하고 정확한 물류 인프라 솔루션을 기반으로 안전하고 효율적인 종합 물류 서비스를 제공합니다. 변화하는 물류 환경에 발맞추어 차별화된 핵심 역량을 고도화하고 고객 가치를 극대화하기 위해 최선의 노력을 다하고 있습니다.
+      </div>
+    </section>
+
+    <!-- ── 섹션 3: 회사소개 - 오시는 길 ── -->
+    <section id="intro-map" class="content-section">
+      <div class="section-title">오시는 길</div>
+      <div class="maps-placeholder">
+        📍 [지도 서비스 준비 중입니다]
+      </div>
+      <table class="info-table">
+        <tr>
+          <th>주소</th>
+          <td>경기도 화성시 만세구 양감면 토성로 624</td>
+        </tr>
+        <tr>
+          <th>대표전화</th>
+          <td>031-8043-2732</td>
+        </tr>
+      </table>
+    </section>
+
+    <!-- ── 섹션 4: 사업영역 ── -->
+    <section id="business-zone" class="content-section">
+      <div class="section-title">사업영역</div>
+      <div class="empty-business">
+        콘텐츠 준비 중입니다.
+      </div>
+    </section>
+
+    <!-- ── 섹션 5: 알림마당 - 공지사항 ── -->
+    <section id="board-notice" class="content-section">
+      <div class="section-title">공지사항</div>
+      <table class="board-table">
+        <thead>
+          <tr>
+            <th style="width: 10%">번호</th>
+            <th>제목</th>
+            <th style="width: 20%">작성일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3" class="no-data">등록된 공지사항이 없습니다.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ── 섹션 6: 알림마당 - 공고 ── -->
+    <section id="board-announcement" class="content-section">
+      <div class="section-title">공고</div>
+      <table class="board-table">
+        <thead>
+          <tr>
+            <th style="width: 10%">번호</th>
+            <th>제목</th>
+            <th style="width: 20%">등록일</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td class="subject" onclick="alert('TEST\n\nTEST1\nTEST2')">TEST</td>
+            <td>2026.06.16</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ── 섹션 7: 알림마당 - 채용정보 ── -->
+    <section id="board-recruits" class="content-section">
+      <div class="section-title">채용정보</div>
+      <table class="board-table">
+        <thead>
+          <tr>
+            <th style="width: 10%">번호</th>
+            <th>제목</th>
+            <th style="width: 20%">모집기간</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colspan="3" class="no-data">현재 진행 중인 채용 공고가 없습니다.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ── 섹션 8: 통합 개인정보처리방침 본문 ── -->
+    <section id="board-privacy" class="content-section">
+      <div class="section-title">개인정보처리방침</div>
+      <div class="privacy-container">
+        <div class="version-info">버전 V1.0 &nbsp;|&nbsp; 시행일: 2026년 06월 01일</div>
+        
+        <div class="intro-card">
+          주식회사 홈앤로지스틱스는 정보주체의 자유와 권리 보호를 위해 「개인정보 보호법」 및 관계 법령이 정한 바를 준수하여, 적법하게 개인정보를 처리하고 안전하게 관리하고 있습니다. 이에 「개인정보 보호법」 제30조에 따라 정보주체에게 개인정보의 처리와 보호에 관한 절차 및 기준을 안내하고, 이와 관련한 고충을 신속하고 원활하게 처리할 수 있도록 하기 위하여 다음과 같이 개인정보 처리방침을 수립·공개합니다.
+        </div>
+
+        <div class="toc-box">
+          <h3>[목 차]</h3>
+          <ol>
+            <li>제1조 개인정보의 처리목적, 처리항목, 보유 및 이용기간</li>
+            <li>제2조 개인정보의 파기 절차 및 방법에 관한 사항</li>
+            <li>제3조 개인정보 처리업무의 위탁에 관한 사항</li>
+            <li>제4조 개인정보의 제3자 제공에 관한 사항</li>
+            <li>제5조 고정형 영상정보처리기기(CCTV) 운영·관리에 관한 사항</li>
+          </ol>
+        </div>
+
+        <div class="privacy-section">
+          <h3>제1조 개인정보의 처리목적, 처리항목, 보유 및 이용기간</h3>
+          <p>① 회사는 물류·배송 서비스 제공 및 정산 업무에 필요한 최소한의 개인정보만을 수집합니다.</p>
+          <span class="sub-label">■ 수집 항목 안내</span>
+          <div class="table-responsive">
+            <table class="privacy-table">
+              <thead>
+                <tr><th>구분</th><th>수집·이용 목적</th><th>처리 항목</th><th>보유기간</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>배송 서비스</td><td>물품 배송 및 배송 관리</td><td>수취인 정보(이름, 휴대폰번호, 주소)</td><td>목적 달성 후 지체 없이 파기</td></tr>
+                <tr><td>협력사 관리</td><td>정산 및 대금 지급</td><td>계좌정보(이름, 은행명, 계좌번호)</td><td>법령 보관기간 종료 시 파기</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="privacy-section">
+          <h3>제2조 개인정보의 파기 절차 및 방법에 관한 사항</h3>
+          <p>회사는 개인정보 보유기간의 경과 또는 처리 목적 달성 등으로 개인정보가 불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다. 전자적 파일 형태는 기록을 재생할 수 없도록 파기하며, 종이 문서는 분쇄하거나 소각합니다.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>제3조 개인정보 처리업무의 위탁에 관한 사항</h3>
+          <p>회사는 원활한 배송 서비스를 위하여 다음과 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
+          <p>• <strong>수탁업체 현황:</strong> 롯데글로벌로지스, CJ대한통운, 한진택배, 153로지스틱스</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>제4조 개인정보의 제3자 제공에 관한 사항</h3>
+          <p>회사는 정보주체의 개인정보를 명시한 범위 내에서만 처리하며, 정보주체의 동의 또는 법률의 특별한 규정이 있는 경우를 제외하고는 제3자에게 제공하지 않습니다.</p>
+        </div>
+
+        <div class="privacy-section">
+          <h3>제5조 고정형 영상정보처리기기(CCTV) 운영·관리에 관한 사항</h3>
+          <p>회사는 시설안전, 화재 및 범죄예방을 목적으로 총 22대의 CCTV를 설치·운영하고 있습니다. 촬영시간은 24시간이며, 보관기간은 촬영일로부터 30일입니다.</p>
+          <div class="callout-box">
+            <strong>📥 개인정보 고충처리 담당부서</strong><br />
+            • 담당자: 박기덕 과장 (031-8043-2585 / kd.park@homelogistics.co.kr)
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ── 푸터 ── -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-nav">
+        <a onclick="showSection('board-notice')">공지사항</a>
+        <a onclick="showSection('board-announcement')">공고</a>
+        <a onclick="showSection('board-recruits')">채용정보</a>
+        <a onclick="showSection('board-privacy')">개인정보처리방침</a>
+      </div>
+      
+      <div class="footer-info">
+        <span><strong>주식회사 홈앤로지스틱스</strong></span>
+        <span>대표자: 김재진</span>
+        <span>사업자등록번호: 801-81-03559</span><br />
+        <span>주소: 경기도 화성시 만세구 양감면 토성로 624</span>
+        <span>Tel: 031-8043-2732</span>
+        <div class="copy">© 2026 홈앤로지스틱스. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── 탭 메뉴 전환 스크립트 ── -->
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(sec => sec.classList.remove('active'));
+
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+      }
+
+      const heroTitle = document.getElementById('hero-title');
+      const heroDesc = document.getElementById('hero-desc');
+      
+      if (sectionId.startsWith('intro-')) {
+        heroTitle.textContent = "COMPANY INFO";
+        heroDesc.textContent = "홈앤로지스틱스를 소개해 드립니다.";
+      } else if (sectionId.startsWith('business-')) {
+        heroTitle.textContent = "BUSINESS AREA";
+        heroDesc.textContent = "비즈니스 핵심 역량을 확인하실 수 있습니다.";
+      } else if (sectionId.startsWith('board-')) {
+        heroTitle.textContent = "MEDIA CENTER";
+        heroDesc.textContent = "홈앤로지스틱스의 최신 정보를 전합니다.";
+      } else {
+        heroTitle.textContent = "HOME & LOGISTICS";
+        heroDesc.textContent = "신뢰와 가치를 연결하는 최고의 물류 파트너";
+      }
+
+      if(sectionId !== 'main-home') {
+        window.scrollTo({ top: 320, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,21 +1,15 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // 1. 푸터 불러오기 (index.html의 footer-loader 자리에 넣습니다)
-  fetch('components/footer.html')
-    .then(response => response.text())
-    .then(data => {
-        const footerLoader = document.getElementById('footer-loader');
-        if (footerLoader) footerLoader.innerHTML = data;
-    })
-    .catch(error => console.error('푸터 로드 실패:', error));
+    // 💡 헤더/푸터 불러오는 fetch 코드는 싹 다 지웠습니다. 
+    // index.html에 이미 있으니 다시 불러올 필요가 없습니다.
 
-  // 2. 개인정보처리방침 불러오기
-  fetch('components/privacy.html')
-    .then(response => response.text())
-    .then(data => {
-        const boardPrivacy = document.getElementById('board-privacy');
-        if (boardPrivacy) boardPrivacy.innerHTML = data;
-    })
-    .catch(error => console.error('개인정보처리방침 로드 실패:', error));
+    // 💡 개인정보처리방침만 불러옵니다.
+    fetch('components/privacy.html')
+        .then(response => response.text())
+        .then(data => {
+            const target = document.getElementById('board-privacy');
+            if(target) target.innerHTML = data;
+        })
+        .catch(error => console.error('개인정보처리방침 로드 실패:', error));
 });
 
 function showSection(sectionId) {

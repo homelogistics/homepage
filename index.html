@@ -499,98 +499,16 @@
 <section id="board-privacy" class="content-section"></section>
 </main> 
 
-<div id="footer-loader"></div>
-
   <section id="board-privacy" class="content-section"></section>
 
   <script src="main.js"></script>
-    // 💡 현재 열려있는 게시판의 ID를 저장하는 변수 (기본값은 메인 홈)
-    let currentBoardId = 'main-home';
 
-    // 💡 [중요] 페이지가 처음 켜질 때 메인 홈 상태를 브라우저 기록에 넣고 초기화합니다.
+  <script>
     window.addEventListener('DOMContentLoaded', () => {
+      // 페이지 로드 시 첫 화면 세팅
       history.replaceState({ sectionId: 'main-home' }, '', '');
-      // 첫 로드 시 메인 홈 화면만 깔끔하게 세팅
       initSection('main-home');
     });
-
-    // 💡 사용자가 브라우저나 스마트폰의 [뒤로가기] 버튼을 눌렀을 때 실행되는 이벤트
-    window.addEventListener('popstate', function(event) {
-      if (event.state && event.state.sectionId) {
-        // 뒤로가기 시에는 주소 기록이 중복으로 쌓이지 않게 true를 보냅니다.
-        showSection(event.state.sectionId, true);
-      }
-    });
-
-    // 일반적인 메뉴 클릭이나 버튼 이동 시 사용하는 함수
-    function showSection(sectionId, isPopstate = false) {
-      // 주소 기록 관리 (뒤로가기가 아닐 때만 브라우저에 기록을 한 칸 쌓음)
-      if (!isPopstate) {
-        history.pushState({ sectionId: sectionId }, '', '');
-      }
-      
-      // 실제 화면 전환 및 텍스트 변경 실행
-      initSection(sectionId);
-    }
-
-    // 💡 [핵심] 화면을 보여주고 숨기는 실제 작동 로직 (지랄맞게 겹치던 버그 수정)
-    function initSection(sectionId) {
-      if (sectionId !== 'board-view') {
-        currentBoardId = sectionId;
-      }
-
-      // 1. 모든 섹션을 화면에서 숨깁니다.
-      const sections = document.querySelectorAll('.content-section');
-      sections.forEach(sec => sec.classList.remove('active'));
-
-      // 2. 선택한 섹션만 화면에 나타나게 만듭니다.
-      const targetSection = document.getElementById(sectionId);
-      if (targetSection) {
-        targetSection.classList.add('active');
-      }
-
-      // 3. 상단 대형 탑 배너(Hero)의 텍스트를 메뉴에 맞게 변경합니다.
-      const heroTitle = document.getElementById('hero-title');
-      const heroDesc = document.getElementById('hero-desc');
-      
-      if (sectionId.startsWith('intro-')) {
-        heroTitle.innerHTML = '<span class="highlight">C</span>OMPANY INTRODUCTION';
-        if(heroDesc) heroDesc.textContent = "회사소개";
-      } else if (sectionId.startsWith('business-')) {
-        heroTitle.innerHTML = '<span class="highlight">B</span>USINESS AREA';
-        if(heroDesc) heroDesc.textContent = "사업영역";
-      } else if (sectionId.startsWith('board-')) {
-        heroTitle.innerHTML = '<span class="highlight">C</span>OMMUNITY';
-        if(heroDesc) heroDesc.textContent = "알림마당";
-      } else {
-        // 메인 화면일 때 탑 배너 타이틀 리셋
-        heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS';
-        if(heroDesc) heroDesc.textContent = "신뢰와 가치를 연결하는 최고의 물류 파트너";
-      }
-
-      // 4. 화면 스크롤 자동 위치 조절 (서브메뉴 이동 시 탑 배너 아래 본문으로 스무스하게 이동)
-      if(sectionId !== 'main-home') {
-        window.scrollTo({ top: 380, behavior: 'smooth' });
-      } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-
-    // ── 💡 게시글 클릭 시 상세 내용을 화면에 뿌려주는 함수 ──
-    function viewPost(type, title, date, content) {
-      document.getElementById('view-section-title').textContent = type;
-      document.getElementById('view-type').textContent = type;
-      document.getElementById('view-title').textContent = title;
-      document.getElementById('view-date').textContent = date;
-      document.getElementById('view-content').innerHTML = content.replace(/\n/g, '<br>');
-      
-      showSection('board-view');
-    }
-
-    // ── 💡 상세페이지 안에서 '목록으로' 버튼을 눌렀을 때 브라우저 뒤로가기를 실행 ──
-    function goBackBoard() {
-      window.history.back();
-    }
   </script>
 </body>
 </html>

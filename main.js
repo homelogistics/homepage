@@ -1,12 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
     // 1. 개인정보처리방침 데이터 가져오기
     fetch('privacy.html')
-        .then(response => response.text())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('privacy.html 응답 실패: ' + response.status);
+            }
+            return response.text();
+        })
         .then(data => {
             const target = document.getElementById('board-privacy');
             if(target) target.innerHTML = data;
         })
-        .catch(err => console.error("데이터 로드 실패:", err));
+        .catch(err => {
+            console.error("개인정보처리방침 로드 실패:", err);
+            const target = document.getElementById('board-privacy');
+            if (target) {
+                target.innerHTML = '<div class="section-title">개인정보처리방침</div><div class="intro-box">페이지를 불러오지 못했습니다. 잠시 후 다시 시도해주세요.</div>';
+            }
+        });
 
     // 2. 페이지 시작 시 메인 홈 보여주기
     initSection('main-home');

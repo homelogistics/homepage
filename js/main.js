@@ -1,4 +1,3 @@
-// 페이지 로드 시 헤더와 푸터를 불러옴
 document.addEventListener("DOMContentLoaded", function() {
   // 헤더 불러오기
   fetch('components/header.html')
@@ -15,8 +14,15 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById('footer-loader').innerHTML = data;
     })
     .catch(error => console.error('푸터 로드 실패:', error));
-});
 
+  // 💡 [추가] 개인정보처리방침 독립 파일 불러오기
+  fetch('components/privacy.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('board-privacy').innerHTML = data;
+    })
+    .catch(error => console.error('개인정보처리방침 로드 실패:', error));
+});
 // 섹션 전환 함수 (기존 기능 그대로 유지)
 function showSection(sectionId) {
   const sections = document.querySelectorAll('.content-section');

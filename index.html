@@ -519,5 +519,14 @@
   </footer>
 
   <script src="main.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 첫 화면 로드
+      if (typeof initSection === 'function') {
+        initSection('main-home');
+      }
+    });
+  </script>
 </body>
 </html>

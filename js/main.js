@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 1. 개인정보처리방침 불러오기
+    // 1. 개인정보처리방침
     fetch('components/privacy.html')
         .then(response => response.text())
         .then(data => {
@@ -7,27 +7,27 @@ document.addEventListener("DOMContentLoaded", function() {
             if(target) target.innerHTML = data;
         })
         .catch(error => console.error('내용 로드 실패:', error));
-
-    // 2. 페이지 첫 로드 시 메인 홈 세팅
-    initSection('main-home');
 });
 
-// 섹션 전환 함수
-function showSection(sectionId, isPopstate = false) {
+// 섹션 전환 함수가 어디서든 호출될 수 있도록 전역으로 선언합니다.
+window.showSection = function(sectionId, isPopstate = false) {
     if (!isPopstate) history.pushState({ sectionId: sectionId }, '', '');
-    initSection(sectionId);
-}
+    
+    // 로직 호출 전 요소 존재 확인
+    const target = document.getElementById(sectionId);
+    if (target) {
+        initSection(sectionId);
+    } else {
+        console.error('섹션을 찾을 수 없습니다:', sectionId);
+    }
+};
 
-// 화면 전환 핵심 로직
 function initSection(sectionId) {
-    // 1. 모든 섹션 숨기기
     const sections = document.querySelectorAll('.content-section');
     sections.forEach(sec => sec.classList.remove('active'));
 
-    // 2. 선택한 섹션 보이기
     const targetSection = document.getElementById(sectionId);
-    if (targetSection) {
-        targetSection.classList.add('active');
+    if (targetSection) targetSection.classList.add('active');
     }
 
     // 3. 탑 배너 변경

@@ -239,6 +239,42 @@
       .hero h1 { font-size: 28px; }
       .hero p { font-size: 15px; }
     }
+    .view-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; border-top: 2px solid #1a2e5a; }
+    .view-table th, .view-table td { border: 1px solid #dcdcdc; padding: 12px 16px; text-align: left; }
+    .view-table th { background: #f8fafc; color: #333; font-weight: 700; width: 15%; text-align: center; }
+    .view-table td.content-cell { min-height: 200px; vertical-align: top; line-height: 1.8; padding: 25px 16px; }
+    .file-link { color: #0066cc; text-decoration: underline; font-weight: 600; }
+    .btn-area { margin-top: 30px; text-align: right; }
+    .back-btn { background: #1a2e5a; color: #fff; padding: 10px 24px; border: none; font-size: 14px; font-weight: 600; cursor: pointer; border-radius: 3px; }
+    .back-btn:hover { background: #0f1c3a; }
+    .main-board-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #b91c1c; /* 빨간색 밑줄 */
+      margin-bottom: 15px;
+    }
+    /* 기존 제목에 걸려있던 여백 리셋 */
+    .board-column h3 {
+      border-bottom: none !important;
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    /* + 버튼 디자인과 마우스 커서 모양 설정 */
+    .main-board-header .more-btn {
+      font-size: 20px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
+      padding: 0 5px;
+      line-height: 1;
+      transition: color 0.2s ease;
+    }
+    /* + 버튼에 마우스 올렸을 때 빨갛게 변하는 효과 */
+    .main-board-header .more-btn:hover {
+      color: #b91c1c;
+    }
   </style>
 </head>
 <body>
@@ -303,30 +339,39 @@
         </div>
       </div>
 
-      <div class="main-boards-container">
+<div class="main-boards-container">
         
         <div class="board-column">
-          <h3>공지사항</h3>
+          <div class="main-board-header">
+            <h3>공지사항</h3>
+            <span class="more-btn" onclick="showSection('board-notice')">+</span>
+          </div>
           <ul class="board-mini-list">
             <li class="board-mini-item">
-              <span class="subject" onclick="showSection('board-notice')">TEST1</span>
+              <span class="subject" onclick="viewPost('공지사항', 'TEST1', '2026.06.01', '안녕하세요. 홈앤로지스틱스 공지사항 테스트 내용입니다.')">TEST1</span>
               <span class="date">2026.06.01</span>
             </li>
           </ul>
         </div>
 
         <div class="board-column">
-          <h3>공고</h3>
+          <div class="main-board-header">
+            <h3>공고</h3>
+            <span class="more-btn" onclick="showSection('board-announcement')">+</span>
+          </div>
           <ul class="board-mini-list">
             <li class="board-mini-item">
-              <span class="subject" onclick="showSection('board-announcement')">TEST2</span>
+              <span class="subject" onclick="viewPost('공고', 'TEST2', '2026.06.02', '안녕하세요. 홈앤로지스틱스 공고 테스트 내용입니다.')">TEST2</span>
               <span class="date">2026.06.02</span>
             </li>
           </ul>
         </div>
 
         <div class="board-column">
-          <h3>채용정보</h3>
+          <div class="main-board-header">
+            <h3>채용정보</h3>
+            <span class="more-btn" onclick="showSection('board-recruits')">+</span>
+          </div>
           <div class="board-empty-msg">게시물이 없습니다.</div>
         </div>
 
@@ -358,7 +403,7 @@
 
     <section id="business-zone" class="content-section">
       <div class="section-title">사업영역</div>
-      <div class="intro-box">콘텐츠 준비 중입니다.</div>
+      <div class="intro-box">준비 중입니다.</div>
     </section>
 
     <section id="board-notice" class="content-section">
@@ -372,7 +417,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>5</td><td class="subject">TEST1</td><td>2026.06.01</td></tr>
+          <tr><td>1</td><td class="subject">TEST1</td><td>2026.06.01</td></tr>
         </tbody>
       </table>
     </section>
@@ -388,7 +433,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>5</td><td class="subject">TEST2</td><td>2026.04.01</td></tr>
+          <tr><td>1</td><td class="subject">TEST2</td><td>2026.04.01</td></tr>
         </tbody>
       </table>
     </section>
@@ -409,6 +454,37 @@
           </tr>
         </tbody>
       </table>
+    </section>
+
+<section id="board-view" class="content-section">
+      <div class="section-title" id="view-section-title">게시글 보기</div>
+      
+      <table class="view-table">
+        <tr>
+          <th>구분</th>
+          <td id="view-type" style="font-weight: bold; color: #e8420a;">-</td>
+        </tr>
+        <tr>
+          <th>제목</th>
+          <td id="view-title" style="font-weight: bold; font-size: 16px;">-</td>
+        </tr>
+        <tr>
+          <th>작성일</th>
+          <td id="view-date">-</td>
+        </tr>
+        <tr>
+          <th>첨부파일</th>
+          <td><a href="#" class="file-link" onclick="alert('첨부된 파일이 없습니다.'); return false;">첨부파일 없음</a></td>
+        </tr>
+        <tr>
+          <th>내용</th>
+          <td id="view-content" class="content-cell"> - </td>
+        </tr>
+      </table>
+
+      <div class="btn-area">
+        <button class="back-btn" onclick="goBackBoard()">목록으로</button>
+      </div>
     </section>
 
     <section id="board-privacy" class="content-section">
@@ -440,8 +516,14 @@
     </div>
   </footer>
 
-  <script>
+<script>
+    let currentBoardId = 'main-home';
+
     function showSection(sectionId) {
+      if (sectionId !== 'board-view') {
+        currentBoardId = sectionId;
+      }
+
       const sections = document.querySelectorAll('.content-section');
       sections.forEach(sec => sec.classList.remove('active'));
 
@@ -454,16 +536,17 @@
       const heroDesc = document.getElementById('hero-desc');
       
       if (sectionId.startsWith('intro-')) {
-        heroTitle.innerHTML = '<span class="highlight">C</span>OMPANY INTRODUCTION';
-        heroDesc.textContent = "회사소개.";
+        heroTitle.innerHTML = '<span class=\"highlight\">C</span>OMPANY INTRODUCTION';
+        if(heroDesc) heroDesc.textContent = "회사소개";
       } else if (sectionId.startsWith('business-')) {
-        heroTitle.innerHTML = '<span class="highlight">B</span>USINESS AREA';
-        heroDesc.textContent = "사업영역";
+        heroTitle.innerHTML = '<span class=\"highlight\">B</span>USINESS AREA';
+        if(heroDesc) heroDesc.textContent = "사업영역";
       } else if (sectionId.startsWith('board-')) {
-        heroTitle.innerHTML = '<span class="highlight">C</span>OMMUNITY';
-        heroDesc.textContent = "알림마당.";
+        heroTitle.innerHTML = '<span class=\"highlight\">C</span>OMMUNITY';
+        if(heroDesc) heroDesc.textContent = "알림마당";
       } else {
-        heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS';
+        heroTitle.innerHTML = '<span class=\"highlight\">H</span>OME &amp; <span class=\"highlight\">L</span>OGISTICS';
+        if(heroDesc) heroDesc.textContent = "신뢰와 가치를 연결하는 최고의 물류 파트너";
       }
 
       if(sectionId !== 'main-home') {
@@ -471,6 +554,22 @@
       } else {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }
+    }
+
+    // ── 💡 [새로 추가] 게시글 데이터를 상세 폼에 뿌려주는 실행 함수 ──
+    function viewPost(type, title, date, content) {
+      document.getElementById('view-section-title').textContent = type;
+      document.getElementById('view-type').textContent = type;
+      document.getElementById('view-title').textContent = title;
+      document.getElementById('view-date').textContent = date;
+      document.getElementById('view-content').innerHTML = content.replace(/\n/g, '<br>');
+      
+      showSection('board-view');
+    }
+
+    // ── 💡 [새로 추가] 상세화면에서 '목록으로' 돌아가기 처리 함수 ──
+    function goBackBoard() {
+      showSection(currentBoardId);
     }
   </script>
 </body>

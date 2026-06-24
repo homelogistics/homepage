@@ -1,46 +1,45 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // 💡 헤더/푸터 불러오는 fetch 코드는 싹 다 지웠습니다. 
-    // index.html에 이미 있으니 다시 불러올 필요가 없습니다.
-
-    // 💡 개인정보처리방침만 불러옵니다.
+    // 개인정보처리방침만 fetch로 불러옵니다.
     fetch('components/privacy.html')
         .then(response => response.text())
         .then(data => {
             const target = document.getElementById('board-privacy');
             if(target) target.innerHTML = data;
         })
-        .catch(error => console.error('개인정보처리방침 로드 실패:', error));
+        .catch(error => console.error('로드 실패:', error));
+
+    // 페이지 로드 시 첫 화면 세팅
+    history.replaceState({ sectionId: 'main-home' }, '', '');
+    initSection('main-home');
 });
 
-function showSection(sectionId) {
-  const sections = document.querySelectorAll('.content-section');
-  sections.forEach(sec => sec.classList.remove('active'));
+function showSection(sectionId, isPopstate = false) {
+    if (!isPopstate) history.pushState({ sectionId: sectionId }, '', '');
+    initSection(sectionId);
+}
 
-  const targetSection = document.getElementById(sectionId);
-  if (targetSection) {
-    targetSection.classList.add('active');
-  }
+function initSection(sectionId) {
+    const sections = document.querySelectorAll('.content-section');
+    sections.forEach(sec => sec.classList.remove('active'));
 
-  const heroTitle = document.getElementById('hero-title');
-  const heroDesc = document.getElementById('hero-desc');
-  
-  if (sectionId.startsWith('intro-')) {
-    heroTitle.innerHTML = '<span class="highlight">C</span>OMPANY INFO';
-    if(heroDesc) heroDesc.textContent = "회사소개";
-  } else if (sectionId.startsWith('business-')) {
-    heroTitle.innerHTML = '<span class="highlight">B</span>USINESS AREA';
-    if(heroDesc) heroDesc.textContent = "사업영역";
-  } else if (sectionId.startsWith('board-')) {
-    heroTitle.innerHTML = '<span class="highlight">C</span>OMMUNITY';
-    if(heroDesc) heroDesc.textContent = "알림마당";
-  } else {
-    heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS';
-    if(heroDesc) heroDesc.textContent = "신뢰와 가치를 연결하는 최고의 물류 파트너";
-  }
+    const targetSection = document.getElementById(sectionId);
+    if (targetSection) targetSection.classList.add('active');
 
-  if(sectionId !== 'main-home') {
-    window.scrollTo({ top: 380, behavior: 'smooth' });
-  } else {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+    // 탑 배너 텍스트 변경 로직
+    const heroTitle = document.getElementById('hero-title');
+    const heroDesc = document.getElementById('hero-desc');
+    
+    if (sectionId.startsWith('intro-')) {
+        heroTitle.innerHTML = '<span class="highlight">C</span>OMPANY';
+        if(heroDesc) heroDesc.textContent = "회사소개";
+    } else if (sectionId.startsWith('board-')) {
+        heroTitle.innerHTML = '<span class="highlight">C</span>OMMUNITY';
+        if(heroDesc) heroDesc.textContent = "알림마당";
+    } else {
+        heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS';
+        if(heroDesc) heroDesc.textContent = "신뢰와 가치를 연결하는 최고의 물류 파트너";
+    }
+
+    if(sectionId !== 'main-home') window.scrollTo({ top: 380, behavior: 'smooth' });
+    else window.scrollTo({ top: 0, behavior: 'smooth' });
 }

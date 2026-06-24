@@ -1,21 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // 헤더 불러오기
-  fetch('components/header.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('header-loader').innerHTML = data;
-    })
-    .catch(error => console.error('헤더 로드 실패:', error));
-
-  // 푸터 불러오기
-  fetch('components/footer.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('footer-loader').innerHTML = data;
-    })
-    .catch(error => console.error('푸터 로드 실패:', error));
-
-  // 💡 [추가] 개인정보처리방침 독립 파일 불러오기
+  // 💡 fetch로 헤더/푸터를 불러오는 코드는 모두 삭제했습니다.
+  // 💡 개인정보처리방침만 불러옵니다.
   fetch('components/privacy.html')
     .then(response => response.text())
     .then(data => {
@@ -23,7 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
     })
     .catch(error => console.error('개인정보처리방침 로드 실패:', error));
 });
-// 섹션 전환 함수 (기존 기능 그대로 유지)
+
+// 섹션 전환 함수는 그대로 두세요
 function showSection(sectionId) {
   const sections = document.querySelectorAll('.content-section');
   sections.forEach(sec => sec.classList.remove('active'));
@@ -33,6 +19,7 @@ function showSection(sectionId) {
     targetSection.classList.add('active');
   }
 
+  // ... (나머지 기존 코드 그대로 유지) ...
   const heroTitle = document.getElementById('hero-title');
   const heroDesc = document.getElementById('hero-desc');
   
@@ -46,7 +33,7 @@ function showSection(sectionId) {
     heroTitle.innerHTML = '<span class="highlight">M</span>EDIA CENTER';
     heroDesc.textContent = "홈앤로지스틱스의 최신 정보를 전합니다.";
   } else {
-    heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS';
+    heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class=\"highlight\">L</span>OGISTICS';
     heroDesc.textContent = "신뢰와 가치를 연결하는 최고의 물류 파트너";
   }
 

@@ -120,30 +120,28 @@
 
     /* ── [새로 추가] 메인 화면 전용 그리드 스타일 (캡쳐본 반영) ── */
     /* 1. 상단 3개 바로가기 카드 */
-    .main-cards-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin-bottom: 60px;
-    }
-    .main-card {
-      background: #fdfdfd;
+.main-card {
+      background: #f8fafc;
       border: 1px solid #e2e8f0;
-      padding: 30px 25px;
+      border-radius: 8px;
+      padding: 20px 25px;       /* 👈 위아래 여백을 대폭 줄임 */
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+      height: 100px;            /* 👈 카드의 전체 높이를 100px로 슬림하게 제한 */
     }
     .main-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      background: #fff;
       border-color: #1a2e5a;
     }
-    .card-text h3 { font-size: 20px; color: #333; margin-bottom: 12px; font-weight: 700; }
-    .card-text p { font-size: 14px; color: #777; line-height: 1.5; }
-    .card-icon { font-size: 36px; filter: grayscale(0.2); }
+    .card-text h3 { font-size: 18px; color: #1a2e5a; margin-bottom: 4px; }
+    .card-text p { font-size: 13px; color: #64748b; }
+    .card-icon { font-size: 28px; }
 
     /* 2. 하단 3단 게시판 통합 영역 */
     .main-boards-container {
@@ -308,38 +306,41 @@
     </nav>
   </header>
 
-  <main>
+<main>
     <section class="hero">
       <h1 id="hero-title"><span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS</h1>
     </section>
 
     <section id="main-home" class="content-section active">
       
-      <div class="main-cards-container">
-        <div class="main-card" onclick="showSection('intro-summary')">
+      <!-- 💡 상단 카드 영역: 테두리선 및 그림자 완벽 제거 -->
+      <div class="main-cards-container" style="display: grid !important; grid-template-columns: repeat(3, 1fr) !important; gap: 20px !important; width: 100% !important; box-sizing: border-box !important; border: none !important; border-bottom: 0 !important; box-shadow: none !important; margin-bottom: 40px !important;">
+        
+        <!-- [1열] 회사소개 카드 -->
+        <div class="main-card" onclick="showSection('intro-summary')" style="width: 100% !important; margin: 0 !important;">
           <div class="card-text">
             <h3>회사소개</h3>
             <p>회사소개 입니다.</p>
           </div>
           <div class="card-icon">📄</div>
         </div>
-        <div class="main-card" onclick="showSection('business-zone')">
+        
+        <!-- [2열] 사업영역 카드 -->
+        <div class="main-card" onclick="showSection('business-zone')" style="width: 100% !important; margin: 0 !important;">
           <div class="card-text">
             <h3>사업영역</h3>
             <p>사업영역 안내</p>
           </div>
           <div class="card-icon">⚙️</div>
         </div>
-        <div class="main-card" onclick="showSection('board-notice')">
-          <div class="card-text">
-            <h3>공지사항</h3>
-            <p>공지사항을 확인하세요.</p>
-          </div>
-          <div class="card-icon">📖</div>
-        </div>
-      </div>
 
-<div class="main-boards-container">
+        <!-- [3열] 완벽한 공란 -->
+        <div style="visibility: hidden !important; pointer-events: none !important;"></div>
+
+      </div> <!-- main-cards-container 닫힘 -->
+
+      <!-- 💡 하단 게시판 영역: 👈 여기에 숨어있던 상단 경계선(border-top)을 강제로 지웠습니다! -->
+      <div class="main-boards-container" style="border-top: none !important; margin-top: 0 !important; padding-top: 10px !important;">
         
         <div class="board-column">
           <div class="main-board-header">
@@ -348,7 +349,7 @@
           </div>
           <ul class="board-mini-list">
             <li class="board-mini-item">
-              <span class="subject" onclick="viewPost('공지사항', 'TEST1', '2026.06.01', '안녕하세요. 홈앤로지스틱스 공지사항 테스트 내용입니다.')">TEST1</span>
+              <span class="subject" onclick="viewPost('공지사항', 'TEST1', '2026.06.01', '안녕하세요. 홈앤로지스틱스 공지사항 테스트 내용입니다.')" style="cursor: pointer;">TEST1</span>
               <span class="date">2026.06.01</span>
             </li>
           </ul>
@@ -361,7 +362,7 @@
           </div>
           <ul class="board-mini-list">
             <li class="board-mini-item">
-              <span class="subject" onclick="viewPost('공고', 'TEST2', '2026.06.02', '안녕하세요. 홈앤로지스틱스 공고 테스트 내용입니다.')">TEST2</span>
+              <span class="subject" onclick="viewPost('공고', 'TEST2', '2026.06.02', '안녕하세요. 홈앤로지스틱스 공고 테스트 내용입니다.')" style="cursor: pointer;">TEST2</span>
               <span class="date">2026.06.02</span>
             </li>
           </ul>
@@ -417,7 +418,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td class="subject">TEST1</td><td>2026.06.01</td></tr>
+          <tr>
+            <td>1</td>
+            <td class="subject" onclick="viewPost('공지사항', 'TEST1', '2026.06.01', '안녕하세요. 홈앤로지스틱스 공지사항 테스트 내용입니다.')" style="cursor: pointer;">TEST1</td>
+            <td>2026.06.01</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -433,7 +438,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td>1</td><td class="subject">TEST2</td><td>2026.04.01</td></tr>
+          <tr>
+            <td>1</td>
+            <td class="subject" onclick="viewPost('공고', 'TEST2', '2026.06.02', '안녕하세요. 홈앤로지스틱스 공고 테스트 내용입니다.')" style="cursor: pointer;">TEST2</td>
+            <td>2026.04.01</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -517,38 +526,71 @@
   </footer>
 
 <script>
+    // 💡 현재 열려있는 게시판의 ID를 저장하는 변수 (기본값은 메인 홈)
     let currentBoardId = 'main-home';
 
-    function showSection(sectionId) {
+    // 💡 [중요] 페이지가 처음 켜질 때 메인 홈 상태를 브라우저 기록에 넣고 초기화합니다.
+    window.addEventListener('DOMContentLoaded', () => {
+      history.replaceState({ sectionId: 'main-home' }, '', '');
+      // 첫 로드 시 메인 홈 화면만 깔끔하게 세팅
+      initSection('main-home');
+    });
+
+    // 💡 사용자가 브라우저나 스마트폰의 [뒤로가기] 버튼을 눌렀을 때 실행되는 이벤트
+    window.addEventListener('popstate', function(event) {
+      if (event.state && event.state.sectionId) {
+        // 뒤로가기 시에는 주소 기록이 중복으로 쌓이지 않게 true를 보냅니다.
+        showSection(event.state.sectionId, true);
+      }
+    });
+
+    // 일반적인 메뉴 클릭이나 버튼 이동 시 사용하는 함수
+    function showSection(sectionId, isPopstate = false) {
+      // 주소 기록 관리 (뒤로가기가 아닐 때만 브라우저에 기록을 한 칸 쌓음)
+      if (!isPopstate) {
+        history.pushState({ sectionId: sectionId }, '', '');
+      }
+      
+      // 실제 화면 전환 및 텍스트 변경 실행
+      initSection(sectionId);
+    }
+
+    // 💡 [핵심] 화면을 보여주고 숨기는 실제 작동 로직 (지랄맞게 겹치던 버그 수정)
+    function initSection(sectionId) {
       if (sectionId !== 'board-view') {
         currentBoardId = sectionId;
       }
 
+      // 1. 모든 섹션을 화면에서 숨깁니다.
       const sections = document.querySelectorAll('.content-section');
       sections.forEach(sec => sec.classList.remove('active'));
 
+      // 2. 선택한 섹션만 화면에 나타나게 만듭니다.
       const targetSection = document.getElementById(sectionId);
       if (targetSection) {
         targetSection.classList.add('active');
       }
 
+      // 3. 상단 대형 탑 배너(Hero)의 텍스트를 메뉴에 맞게 변경합니다.
       const heroTitle = document.getElementById('hero-title');
       const heroDesc = document.getElementById('hero-desc');
       
       if (sectionId.startsWith('intro-')) {
-        heroTitle.innerHTML = '<span class=\"highlight\">C</span>OMPANY INTRODUCTION';
+        heroTitle.innerHTML = '<span class="highlight">C</span>OMPANY INTRODUCTION';
         if(heroDesc) heroDesc.textContent = "회사소개";
       } else if (sectionId.startsWith('business-')) {
-        heroTitle.innerHTML = '<span class=\"highlight\">B</span>USINESS AREA';
+        heroTitle.innerHTML = '<span class="highlight">B</span>USINESS AREA';
         if(heroDesc) heroDesc.textContent = "사업영역";
       } else if (sectionId.startsWith('board-')) {
-        heroTitle.innerHTML = '<span class=\"highlight\">C</span>OMMUNITY';
+        heroTitle.innerHTML = '<span class="highlight">C</span>OMMUNITY';
         if(heroDesc) heroDesc.textContent = "알림마당";
       } else {
-        heroTitle.innerHTML = '<span class=\"highlight\">H</span>OME &amp; <span class=\"highlight\">L</span>OGISTICS';
+        // 메인 화면일 때 탑 배너 타이틀 리셋
+        heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS';
         if(heroDesc) heroDesc.textContent = "신뢰와 가치를 연결하는 최고의 물류 파트너";
       }
 
+      // 4. 화면 스크롤 자동 위치 조절 (서브메뉴 이동 시 탑 배너 아래 본문으로 스무스하게 이동)
       if(sectionId !== 'main-home') {
         window.scrollTo({ top: 380, behavior: 'smooth' });
       } else {
@@ -556,7 +598,7 @@
       }
     }
 
-    // ── 💡 [새로 추가] 게시글 데이터를 상세 폼에 뿌려주는 실행 함수 ──
+    // ── 💡 게시글 클릭 시 상세 내용을 화면에 뿌려주는 함수 ──
     function viewPost(type, title, date, content) {
       document.getElementById('view-section-title').textContent = type;
       document.getElementById('view-type').textContent = type;
@@ -567,9 +609,9 @@
       showSection('board-view');
     }
 
-    // ── 💡 [새로 추가] 상세화면에서 '목록으로' 돌아가기 처리 함수 ──
+    // ── 💡 상세페이지 안에서 '목록으로' 버튼을 눌렀을 때 브라우저 뒤로가기를 실행 ──
     function goBackBoard() {
-      showSection(currentBoardId);
+      window.history.back();
     }
   </script>
 </body>

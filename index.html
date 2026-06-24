@@ -504,9 +504,6 @@
   <footer>
     <div class="footer-container">
       <div class="footer-nav">
-        <a onclick="showSection('board-notice')">공지사항</a>
-        <a onclick="showSection('board-announcement')">공고</a>
-        <a onclick="showSection('board-recruits')">채용정보</a>
         <a onclick="showSection('board-privacy')">개인정보처리방침</a>
       </div>
       <div class="footer-info">
@@ -519,14 +516,5 @@
   </footer>
 
   <script src="main.js"></script>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // 첫 화면 로드
-      if (typeof initSection === 'function') {
-        initSection('main-home');
-      }
-    });
-  </script>
 </body>
 </html>

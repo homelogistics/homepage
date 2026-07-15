@@ -32,14 +32,15 @@
       z-index: 100;
     }
     .logo {
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: -1px;
-      color: #1a2e5a;
-      font-stretch: condensed;
+      display: flex;
+      align-items: center;
       cursor: pointer;
     }
-    .logo span.highlight { color: #e8420a; }
+    .logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
+    }
     
     nav { display: flex; gap: 32px; }
     .nav-item {
@@ -230,7 +231,7 @@
     }
     @media (max-width: 768px) {
       header { padding: 0 20px; height: 70px; }
-      .logo { font-size: 22px; }
+      .logo-img { height: 28px; }
       nav { gap: 16px; }
       .nav-item { font-size: 14px; }
       .hero { height: 320px; }
@@ -279,7 +280,7 @@
 
   <header>
     <div class="logo" onclick="showSection('main-home')">
-      <span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS
+      <img src="logo.svg" alt="홈앤로지스틱스" class="logo-img" />
     </div>
     <nav>
       <div class="nav-item">

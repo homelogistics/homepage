@@ -25,14 +25,15 @@ header {
   z-index: 100;
 }
 .logo {
-  font-size: 28px;
-  font-weight: 900;
-  letter-spacing: -1px;
-  color: #1a2e5a;
-  font-stretch: condensed;
+  display: flex;
+  align-items: center;
   cursor: pointer;
 }
-.logo span.highlight { color: #e8420a; }
+.logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+}
 
 nav { display: flex; gap: 32px; }
 .nav-item {
@@ -173,7 +174,7 @@ footer {
 /* 반응형 모바일 */
 @media (max-width: 768px) {
   header { padding: 0 20px; height: 70px; }
-  .logo { font-size: 22px; }
+  .logo-img { height: 28px; }
   nav { gap: 16px; }
   .nav-item { font-size: 14px; }
   .hero { height: 320px; }

@@ -47,9 +47,17 @@ function initSection(sectionId) {
     const heroDesc = document.getElementById('hero-desc');
     
     if (heroTitle) {
-        if (sectionId.startsWith('intro-')) heroTitle.innerHTML = '<span class="highlight">C</span>OMPANY';
-        else if (sectionId.startsWith('board-')) heroTitle.innerHTML = '<span class="highlight">C</span>OMMUNITY';
-        else heroTitle.innerHTML = '<span class="highlight">H</span>OME &amp; <span class="highlight">L</span>OGISTICS';
+        if (sectionId === 'main-home') {
+            heroTitle.innerHTML = '<img src="logo-white.svg" alt="홈앤로지스틱스" class="hero-logo" />';
+        } else if (sectionId.startsWith('intro-')) {
+            heroTitle.innerHTML = '<span class="highlight">C</span>OMPANY';
+        } else if (sectionId === 'business-zone') {
+            heroTitle.innerHTML = '<span class="highlight">B</span>USINESS';
+        } else if (sectionId.startsWith('board-')) {
+            heroTitle.innerHTML = '<span class="highlight">C</span>OMMUNITY';
+        } else {
+            heroTitle.innerHTML = '<img src="logo-white.svg" alt="홈앤로지스틱스" class="hero-logo" />';
+        }
     }
     
     // 스크롤 이동
